@@ -1,0 +1,34 @@
+/**user.wxss**/
+.userinfo {
+  position:relative;
+  background: #F9FAFC;
+  width: 100%;
+  height: 35%;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  position: absolute; 
+  top: 64rpx;
+  font-family: "Tahoma";
+}
+
+.button-group {
+  top: 25rpx;
+  position:relative;
+  background: #F9FAFC;
+  width: 100%;
+}
+.button-group button {
+  background-color: #F9FAFC;
+  width: 100%;
+  font-family: "SimSun";
+  text-align: left;
+  border: none;
+}
+
+

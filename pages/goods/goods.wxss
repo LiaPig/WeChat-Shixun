@@ -1,0 +1,206 @@
+container_nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #939393;
+}
+
+.nav_left {
+  float: left;
+  height: 100%;
+  margin: 0 11rpx 0 0;
+  overflow: auto;
+  width: 187rpx;
+  background-color: #F9FAFC;
+}
+
+.nav_left_items {
+  text-align: center;
+  height: 80rpx;
+  font-size:32rpx;
+  background:#F9FAFC;
+  padding-top: 40rpx;
+  border-bottom: 1px solid #E8E7E3;
+}
+
+.nav_left .nav_left_items.active {
+  border-left: 3rpx solid #ff2000;
+  color: #ff2000;
+}
+
+.nav_right{
+  /*右侧盒子使用了绝对定位*/
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex: 1;
+  /*宽度75%，高度占满，并使用百分比布局*/
+  width: 75%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.nav_right .nav_right_items{
+  position: relative;
+  height: 180rpx;
+  width: 100%;
+  border-top: 1px solid #E8E7E3;
+  border-bottom: 1px solid #E8E7E3;
+  padding-top: 10rpx;
+  flex-direction : row;
+  color: #8e959a;
+  font-size: 25rpx;
+}
+
+.nav_right .nav_right_items .logo {
+  padding-top: 5rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.nav_right .nav_right_items .logo image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.nav_right .nav_right_items .content {
+  position: absolute;
+  width: 250rpx;
+  height: 150rpx;
+  font-size: 25rpx;
+  color: #8e959a;
+  float: left;
+  margin-left: 150rpx;
+  margin-top: -150rpx;
+}
+
+.nav_right .nav_right_items .content .content_title {
+  margin: 10rpx;
+  font-size: 30rpx;
+  color: black;
+  width: 250rpx;
+}
+
+.nav_right .nav_right_items .content .content_description{
+  float: left;
+  padding-top: 3px;
+  padding-left: 10rpx;
+  width: 250rpx;
+  height: 60rpx;
+}
+
+.nav_right .nav_right_items .content .content_price{
+  float: left;
+  padding-top: 10px;
+  padding-left: 10rpx;
+  color: red;
+  font-size: 28rpx;
+}
+
+.nav_right .nav_right_items .add {
+  height: 120rpx;
+  width: 140rpx;
+  margin-top: -20rpx;
+  float: right;
+  text-align: center;
+  font-size: 40rpx;
+}
+
+.radio-group .radio {
+  float: left;
+  width: 33%;
+}
+
+.wall{
+  clear:both;
+}
+
+.cart {
+  position: fixed;
+  width: 100%;
+  bottom: 0; 
+  height: 150rpx;   
+  background-color: #E5E9F2;
+  z-index: 99;
+}
+
+.cart_left {
+  float: left;
+  height: 100%;
+  width: 75%;
+}
+
+.cart .cart_left .cart_left_logo {
+  float: left;
+  width: 30%;
+  height: 100%;
+  padding-top: 20rpx;
+}
+
+.active {
+  color: red;
+}
+
+.cart .cart_left .cart_left_logo .cart_left_logo_count {
+  position: relative;
+  display: inline-block;
+  background-color: black;
+  float: right;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  font-size: 35rpx;
+  z-index: 99999;
+}
+
+.cart .cart_left .cart_left_text_active {
+  display: inline-block;
+  float: left;
+  height: 150rpx;
+  width: 70%;
+  text-align: center;
+  font-size: 60rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  color: red;
+}
+
+.cart .cart_left .cart_left_text {
+  display: inline-block;
+  float: left;
+  height: 150rpx;
+  width: 70%;
+  text-align: center;
+  font-size: 40rpx;
+  padding-top: 45rpx;
+  padding-bottom: 45rpx;
+}
+
+.cart .cart_right_active {
+  background: red;
+  color: white;
+  float: right;
+  height: 100%;
+  width: 25%;
+  text-align: center;
+  font-size: 50rpx;
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+.cart .cart_right {
+  background: black;
+  color: white;
+  float: right;
+  height: 100%;
+  width: 25%;
+  text-align: center;
+  font-size: 50rpx;
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
+}

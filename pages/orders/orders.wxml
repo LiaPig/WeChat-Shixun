@@ -1,0 +1,4 @@
+<!-- 底部操作栏 -->
+<view>
+  <button type='primary' bindtap='gogogo'>点击跳转</button>
+</view>
