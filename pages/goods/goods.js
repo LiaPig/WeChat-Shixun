@@ -269,6 +269,7 @@ Page({
     const goods = that.data.goods;
     let good = goods[navIndex].nodes[index];
     const options = good.options;
+    let cartObjects = this.data.cartObjects;
     //第二步： 判断商品是否有标签
     //如果没有,直接数量减去1
     if (!options) {
@@ -283,19 +284,18 @@ Page({
       let sum = Number(sum_string) - price;
       sum = sum.toFixed(2);
       //4.判断这个对象的数量是否为1
-      let cartObjects = that.data.cartObjects;
       let curGood = cartObjects.find(o => o.id === good.id); 
       let curIndex = cartObjects.findIndex(o => o.id === good.id);
-      console.log(curGood)
       //4.如果等于1，把这个对象从购物车中移除
       if (curGood.quantity === 1){
-        cartObjects.splice(curGood);
+        cartObjects.pop(curGood);
       }
       //4.如果不等于1，数量减1
       else {
         cartObjects[curIndex].quantity--;
       }
       //5.把good赋值给回goods,数据更新
+      
       goods[navIndex].nodes[index] = good;
       this.setData({
         cartObjects: cartObjects,
@@ -448,9 +448,6 @@ Page({
       hiddenSelectModal: true
     });
   },
-    
-  
-  
 
   //点击了遮蔽层，隐藏Modal
   hideCartModal: function(){
