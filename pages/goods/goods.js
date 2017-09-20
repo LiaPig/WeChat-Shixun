@@ -260,6 +260,61 @@ Page({
     });
   },
 
+  //点击“-”减号按钮
+  reducePreOrder: function (e) {
+    //第一步： 获取到当前商品对象good,以及商品的标签
+    const that = this;
+    const index = e.currentTarget.dataset.index;
+    const navIndex = that.data.curIndex;
+    const goods = that.data.goods;
+    let good = goods[navIndex].nodes[index];
+    const options = good.options;
+    //第二步： 判断商品是否有标签
+    //如果没有,直接数量减去1
+    if (!options) {
+      //1.商品good的数量减去1
+      good.preOrder -= 1;
+      //2.购物车的商品总量count减1，
+      //3.购物车的总价sum减去对应的price
+      let count = that.data.count;
+      count--;
+      const sum_string = that.data.sum;
+      const price = Number(good.price);
+      let sum = Number(sum_string) - price;
+      sum = sum.toFixed(2);
+      //4.判断这个对象的数量是否为1
+      let cartObjects = that.data.cartObjects;
+      let curGood = cartObjects.find(o => o.id === good.id); 
+      let curIndex = cartObjects.findIndex(o => o.id === good.id);
+      console.log(curGood)
+      //4.如果等于1，把这个对象从购物车中移除
+      if (curGood.quantity === 1){
+        cartObjects.splice(curGood);
+      }
+      //4.如果不等于1，数量减1
+      else {
+        cartObjects[curIndex].quantity--;
+      }
+      //5.把good赋值给回goods,数据更新
+      goods[navIndex].nodes[index] = good;
+      this.setData({
+        cartObjects: cartObjects,
+        goods: goods,
+        count: count,
+        sum: sum
+      })
+    }
+    //如果有，提示不能操作
+    else {
+      wx.showModal({
+        title: '提示',
+        content: '含有规格的商品只能在购物车里删减',
+        showCancel: false
+      })
+    }
+  },
+
+
   // 点击select切换
   swiperChange: function (e) {
     //第一步： 获取当前商品对象curGood,当前标签（规格）对象size
@@ -361,7 +416,6 @@ Page({
         //循环了所有购物车的对象都没有找到相同标签（规格）的，才加入到购物车！
         if (flag === 0) {
           cartObjects.push(curGood);
-          console.log("加入购物车啦")
         }
       }
       //2.商品没有标签(规格)
@@ -395,48 +449,7 @@ Page({
     });
   },
     
-  //点击“-”减号按钮
-  reducePreOrder: function(e){
-    //第一步： 获取到当前商品对象
-    const index = e.currentTarget.dataset.index;
-    let goods = this.data.goods;
-    const navIndex = this.data.curIndex;
-    let cartObjects = this.data.cartObjects;
-    const id = goods[navIndex].nodes[index].id;
-    let cartGood = cartObjects.find(o => o.id === id);
-    let good = goods[navIndex].nodes[index];
-    //第二步： 判断：如果没有标签，直接减去
-    if (!cartGood || cartGood.size[0]){
-      //1.商品good的数量减去1
-      good.preOrder -= 1;
-      //2.购物车的商品总量count减1，
-      //3.购物车的总价sum减去对应的price
-      let count = this.data.count;
-      count -= 1;
-      const sum_string = this.data.sum;
-      const price = Number(good.price);
-      let sum = Number(sum_string) - price;
-      sum = sum.toFixed(2);
-      //4.从购物车中移除这个对象
-      cartObjects.splice(cartGood);
-      //5.把good赋值给回goods,数据更新
-      goods[navIndex].nodes[index] = good;
-      this.setData({
-        goods: goods,
-        count: count,
-        sum: sum
-      })
-   } 
-   //第二步： 判断：如果有标签，不能直接减去
-   else {
-      wx.showModal({
-        title: '提示',
-        content: '含有规格的商品只能在购物车里删减',
-        showCancel: false
-      })
-   }
-  },
-
+  
   
 
   //点击了遮蔽层，隐藏Modal
