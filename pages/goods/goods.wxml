@@ -177,14 +177,14 @@
           <view class='button_group'>
             <!-- 减少按钮 -->
             <text class="fa fa-minus-square fa-lg"
-                  bindtap="reducePreOrder"
+                  bindtap="reduceQuantity"
                   data-index="{{index}}"
                   style='float:left;line-height: 75px;'> </text>    
             <!-- 当预购数量大于0才显示的预购数量 -->
             <text style='color: red;'>  {{item.quantity}} </text>
             <!-- 增加按钮 -->
             <text class="fa fa-plus-square fa-lg" 
-                  bindtap='addPreOrder'
+                  bindtap='addQuantity'
                   data-index="{{index}}"
                   style='float:right;line-height: 75px;color: orange;'> </text>
           </view>
