@@ -478,10 +478,13 @@ Page({
   addQuantity: function(e){
     //第一步： 获取在购物车中的当前商品
     const that = this;
-    const index = e.currentTarget.dataset.index
+    const index = e.currentTarget.dataset.index;
+    const navIndex = that.data.curIndex;
+    let goods = that.data.goods;
     let cartObjects = that.data.cartObjects;
     //第二步： 当前商品的数量加1
     cartObjects[index].quantity++;
+    goods[navIndex].nodes[index].preOrder++;
     //第三步： 购物车的总价钱count和总数量sum加上对应的
     let count = this.data.count;
     count++;
@@ -491,6 +494,7 @@ Page({
     sum = sum.toFixed(2);
     //第四步： 更新数据
     this.setData({
+      goods: goods,
       cartObjects: cartObjects,
       count: count,
       sum: sum
@@ -502,8 +506,11 @@ Page({
     //第一步： 获取在购物车中的当前商品
     const that = this;
     const index = e.currentTarget.dataset.index
+    const navIndex = that.data.curIndex;
+    let goods = that.data.goods;
     let cartObjects = that.data.cartObjects;
     //第二步： 购物车的总价钱count和总数量sum加上对应的
+    goods[navIndex].nodes[index].preOrder--;
     let count = this.data.count;
     count--;
     const sum_string = this.data.sum;
@@ -541,6 +548,7 @@ Page({
     }
     //第五步： 更新数据
     this.setData({
+      goods: goods,
       count: count,
       sum: sum,
       cartObjects: cartObjects
