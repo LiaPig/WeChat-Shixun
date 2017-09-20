@@ -2,31 +2,3 @@
 <view>
   <button type='primary' bindtap='gogogo'>点击跳转</button>
 </view>
-
-<view class='selectModal' wx:if='{{!hiddenSelectModal}}'>
-  <!-- 蒙蔽层 -->
-  <view animation="{{animationMask}}" 
-        bindtap="hideSelectModal" 
-        class="selectModal_mask"></view>
-  <!-- 内容层 -->
-  <view animation="{{animationContent}}" class="selectModal_content">
-    <!-- 标题 -->
-    <view class='header'>卖萌猪崽</view>
-    <!-- 选择内容 -->
-    <view class='select'>
-      <view class='select_title'>体重</view>
-      <view class='select_content select_active'>1kg</view>
-    </view>
-    <view class='select'>
-      <view class='select_title'>种类</view>
-      <view class='select_content select_active'>A类</view>
-      <view class='select_content'>B类</view>
-      <view class='select_content'>C类</view>
-    </view>
-    <!-- 底部 -->
-    <view class='footer'>
-      <view class='price'>￥ 99.99</view>
-      <view class='button'>加入购物车</view>
-    </view>
-  </view>      
-</view>
