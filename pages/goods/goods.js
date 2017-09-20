@@ -553,6 +553,34 @@ Page({
       sum: sum,
       cartObjects: cartObjects
     })
+  },
+
+  //清空购物车
+  deleteAll: function(){
+    const that = this;
+    wx.showModal({
+      title: '温馨提示',
+      content: '确定要清空购物车吗？',
+      success: function (res) {
+        if (res.confirm) {
+          let cartObjects = that.data.cartObjects;
+          const curIndex = that.data.curIndex;
+          let goods = that.data.goods;
+          for(let i = 0; i < cartObjects.length; i++){
+            const index = goods[curIndex].nodes.findIndex(o => o.id === cartObjects[i].id);
+            goods[curIndex].nodes[index].preOrder = 0;
+          }
+          that.setData({ 
+            goods: goods,
+            count: 0,
+            sum: 0,
+            cartObjects: null,
+            showCartModalStatus: false
+          })
+        }
+      }
+    })
   }
+
 
 })
