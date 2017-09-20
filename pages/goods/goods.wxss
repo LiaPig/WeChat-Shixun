@@ -123,7 +123,7 @@ container_nav {
   width: 100%;
   bottom: 0; 
   height: 150rpx;   
-  background-color: #E5E9F2;
+  background-color: #EFF2F7;
   z-index: 99;
 }
 
@@ -137,7 +137,8 @@ container_nav {
   float: left;
   width: 30%;
   height: 100%;
-  padding-top: 20rpx;
+  font-size: 60rpx;
+  margin-top: 20rpx;
 }
 
 .active {
@@ -152,10 +153,10 @@ container_nav {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
+  margin-left: -20rpx;
   text-align: center;
   color: #fff;
   font-size: 35rpx;
-  z-index: 99999;
 }
 
 .cart .cart_left .cart_left_text_active {
@@ -165,8 +166,7 @@ container_nav {
   width: 70%;
   text-align: center;
   font-size: 60rpx;
-  padding-top: 25rpx;
-  padding-bottom: 25rpx;
+  padding-top: 35rpx;
   color: red;
 }
 
@@ -177,8 +177,7 @@ container_nav {
   width: 70%;
   text-align: center;
   font-size: 40rpx;
-  padding-top: 45rpx;
-  padding-bottom: 45rpx;
+  padding-top: 50rpx;
 }
 
 .cart .cart_right_active {
@@ -203,4 +202,200 @@ container_nav {
   font-size: 50rpx;
   padding-top: 40rpx;
   padding-bottom: 40rpx;
+}
+
+/* 购物车Modal层 */
+/* 开始 */
+.cartModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* 弹窗的遮蔽层 */
+.cartModal .cartModal_mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+}
+/*弹窗主体*/
+.cartModal .cartModal_content {
+	position: fixed;
+	bottom: 150rpx;
+	left: 0;
+	width: 100%;
+	/* height: 235px; */
+	/*box-shadow: 10rpx 0 30rpx rgba(0,0,0,.9);*/
+	background: #fff;
+	z-index: 99;
+}  
+
+/* 弹窗的标题 */
+.cartModal .cartModal_content .content_header {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  width: 100%;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  border: 1rpx solid red;
+  font-size: 40rpx;
+  background-color: #EFF2F7;
+  color: red;
+}
+
+.cartModal .cartModal_content .content_header .content_header_deleteAll{
+  float: right;
+  color: #324057;
+  font-size: 36rpx;
+}
+
+.cartModal .cartModal_content .content_body {
+  position: relative;
+  width: 100%;
+  max-height: 450rpx;
+  height:150rpx;
+  overflow: auto;
+}
+
+.cartModal .cartModal_content .content_body .body_item{
+  width: 100%;
+  height: 150rpx;
+  border-bottom: 1px solid #000;
+}
+
+.cartModal .cartModal_content .content_body .body_item .information {
+  float: left;
+  width: 35%;
+  padding-left: 30rpx;
+}
+
+.cartModal .cartModal_content .content_body .body_item .body_item_title {
+  padding-top: 5rpx;
+  color: orange;
+}
+
+.cartModal .cartModal_content .content_body .body_item .body_item_size {
+  font-size: 25rpx;
+  color: #324057;
+}
+
+.cartModal .cartModal_content .content_body .body_item .body_item_fee {
+  float: left;
+  width: 35%;
+  height: 100%;
+  text-align: center;
+  line-height: 75px;
+  font-size: 35rpx;
+  color: orange;
+}
+
+.cartModal .cartModal_content .content_body .body_item .button_group {
+  float: left;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  line-height: 75px;
+  font-size: 50rpx;
+}
+
+.selectModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.selectModal .selectModal_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+}
+
+.selectModal .selectModal_content {
+  position: fixed;
+	top: 250rpx;
+	left: 0;
+	width: 100%;
+	height: 300px; 
+	/*box-shadow: 10rpx 0 30rpx rgba(0,0,0,.9);*/
+	background: #fff;
+  text-align: center;
+  font-size:35rpx;
+	z-index: 99;
+}
+
+.selectModal .selectModal_content .header {
+  display: inline-block;
+  height: 50rpx;
+  width: 100%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #E8E7E3;
+  font-size:38rpx;
+}
+
+.selectModal .selectModal_content .select {
+  float: left;
+  height: 120rpx;
+  width: 100%;
+  padding-top: 20rpx;
+  padding-left: 10rpx;
+  text-align: left;
+  color: #939393;
+
+}
+
+.selectModal .selectModal_content .select .select_content {
+  display: inline-block;
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  height: 60rpx;
+  width: 120rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border: 1rpx solid #939393;
+}
+
+.select_active {
+  border: 1rpx solid red !important;
+  color: red;
+}
+
+.selectModal .selectModal_content .footer {  
+  position: absolute;
+  bottom: 0;
+  height: 100rpx;
+  width: 100%;
+}
+
+.selectModal .selectModal_content .footer .price {
+  float: left;
+  width: 30%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: red;
+  font-size: 40rpx;
+}
+
+.selectModal .selectModal_content .footer .button {
+  float: right;
+  width: 30%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  font-size: 35rpx;
+  color: #fff;
+  background-color: red;
 }

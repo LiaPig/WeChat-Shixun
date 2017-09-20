@@ -48,29 +48,50 @@
                   data-index="{{index}}"
                   style='float:right;'> </text>
             <!-- 增加按钮会引发的弹窗层 -->
-            <modal hidden="{{hiddenmodalput}}" 
-                   title="{{curGood.title}}" 
-                   confirm-text="确定" 
-                   cancel-text="取消" 
-                   bindcancel="cancel" 
-                   bindconfirm="confirm"
-                   class="modal"> 
-              <block wx:for="{{curGood.options}}" wx:for-item="options" wx:key="id">
-                <!-- 选项标题 -->
-                <text class="option_title">{{options.title}}</text>
-                <!-- 选项组 -->
-                <radio-group class="radio-group">
-                  <label class="radio" wx:for="{{options.select}}"  wx:for-item="item" wx:key="itemId">
-                    <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
-                  </label>
-                  <view class='wall'></view>
-                </radio-group>
-              </block>              
-            </modal>  
+            <view class='selectModal' wx:if='{{!hiddenSelectModal}}'>
+              <!-- 蒙蔽层 -->
+              <view animation="{{animationMask}}" 
+                    bindtap="hideSelectModal" 
+                    class="selectModal_mask"></view>
+              <!-- 内容层 -->
+              <view animation="{{animationContent}}" class="selectModal_content">
+                <!-- 标题 -->
+                <view class='header'>{{curGood.title}}</view>
+                <!-- 选择内容 -->
+                <view wx:if="{{curGood.options.length}}"
+                       wx:for="{{curGood.options}}" 
+                       wx:for-item="options" 
+                       wx:key="">
+                  <view class='select'>
+                    <view class='select_title'>{{options.title}}</view>
+                    <block wx:for="{{options.select}}" 
+                           wx:for-item="select" 
+                           wx:key="">
+                      <view bindtap="swiperChange"
+                            data-id="{{options.id}}"
+                            data-title="{{options.title}}"
+                            data-checked="{{select.checked}}"
+                            data-name="{{select.name}}"
+                            data-value="{{select.value}}"
+                            class='select_content {{select.checked?"select_active": ""}}' >
+                      {{select.name}}</view>
+                    </block>       
+                  </view>       
+                </view>
+                <view wx:if="{{!curGood.options.length}}">
+                  <text>确定加入到购物车吗？</text>
+                </view>
+                <!-- 底部 -->
+                <view class='footer'>
+                  <view class='price'>￥ 99.99</view>
+                  <view class='button' bindtap='confirm'>加入购物车</view>
+                </view>
+              </view>      
+            </view>
+            </view>
           </view>
-        </view>
-      </block>
-    </view>
+        </block>
+      </view>
 
     <!--如果无数据，则显示数据-->
     <view wx:else>暂无这类猪崽的数据•̀(oo)•́</view>
@@ -84,8 +105,8 @@
       <!-- 购物车的左边：购物车logo以及价格信息 -->
       <view class='cart_left'>
         <!-- 购物车locart_leftgo以及其右上角的数量提示 -->   
-        <view class='cart_left_logo'>
-          <text class='fa fa-cart-plus fa-4x active' ></text>
+        <view class='cart_left_logo' bindtap="showCartModal">
+          <text class='fa fa-cart-plus fa-2x active'></text>
           <view class='cart_left_logo_count'>
             <text>{{count}}</text>
           </view>               
@@ -96,7 +117,7 @@
         </view> 
       </view>
       <!-- 购物车的右边：点击跳转到订单页面 -->
-      <view class='cart_right_active' bindtap="showCartModal">选好了</view>  
+      <view class='cart_right_active'>选好了</view>  
     </view>
 
     <!-- 如果购物车为空，则显示 -->
@@ -105,7 +126,7 @@
       <view class='cart_left'>
         <!-- 空的购物车logo -->
         <view class='cart_left_logo'>
-          <text class='fa fa-cart-plus fa-4x' ></text>
+          <text class='fa fa-cart-plus fa-2x' ></text>
         </view>
         <!-- 空空如也的提示 -->
         <view class='cart_left_text'>
@@ -116,4 +137,60 @@
       <view class='cart_right'>选好了</view>
     </view>
   </view>
+
+  <!-- 具体购物车 -->
+  <view class='cartModal' wx:if="{{showCartModalStatus}}">
+    <!-- 蒙蔽层 -->
+    <view animation="{{animationMask}}" 
+          bindtap="hideCartModal" 
+          class="cartModal_mask"></view>
+    <!-- 内容层 -->
+    <view animation="{{animationContent}}" class="cartModal_content">
+      <!-- 购物车的头部 --> 
+      <view class="content_header">
+        <text class='fa fa-cart-arrow-down'></text>
+        <text class="content_header_title">已选商品</text>
+        <view class='content_header_deleteAll'>
+          <text class='fa fa-trash-o'></text>
+          <text bindtap='deleteAll'>清空购物车</text>
+        </view>
+      </view>
+      
+      <!-- 可滚动的购物车内容 -->
+      <scroll-view class="content_body" 
+                  scroll-y="true" 
+                  style="height: {{scrollHeight}}rpx;">
+        <!-- 在购物车的商品 -->
+        <view class='body_item' 
+              wx:for="{{cartObjects}}" 
+              wx:key="">
+          <view class='information'>
+            <view class='body_item_title'>
+              <text class='fa fa-smile-o'> {{item.title}}</text>  
+            </view>
+            <text class='body_item_size' 
+                  wx:for="{{item.size}}"
+                  wx:for-item="size" 
+                  wx:key="">{{size.name}}、</text>
+          </view>
+          <view class="body_item_fee">￥{{item.price * item.quantity}}</view>
+          <view class='button_group'>
+            <!-- 减少按钮 -->
+            <text class="fa fa-minus-square fa-lg"
+                  bindtap="reducePreOrder"
+                  data-index="{{index}}"
+                  style='float:left;line-height: 75px;'> </text>    
+            <!-- 当预购数量大于0才显示的预购数量 -->
+            <text style='color: red;'>  {{item.quantity}} </text>
+            <!-- 增加按钮 -->
+            <text class="fa fa-plus-square fa-lg" 
+                  bindtap='addPreOrder'
+                  data-index="{{index}}"
+                  style='float:right;line-height: 75px;color: orange;'> </text>
+          </view>
+        </view> 
+      </scroll-view>
+    </view>
+  </view>
 </view>
+
