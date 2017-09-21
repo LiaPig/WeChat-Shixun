@@ -1,4 +1,32 @@
 <!-- 底部操作栏 -->
-<view>
-  <button type='primary' bindtap='gogogo'>点击跳转</button>
-</view>
+<scroll-view class='container' scroll-y style="height: 1100rpx;">
+  <block wx:for='{{orders}}' wx:key=''>
+    <view class='orders'>
+      <view class='header'>
+        <view class='number'>  订单编号：{{item.id}}</view>
+        <view class='status'>{{item.status}}</view>
+      </view>
+      <view class='content'>
+        <view class='products'>
+          <block wx:for='{{item.products}}' wx:for-item='product'  wx:key=''>
+            <view class='product'>
+              <view class='title'>{{product.title}}</view>
+              <view class='price'>￥{{product.price}} × {{product.quantity}}</view>
+              <view class='size'>
+                <block wx:for='{{product.size}}' wx:for-item='size'  wx:key=''>
+                  <text>{{size.name}}、</text>
+                </block>
+              </view> 
+              <view class='size_count'>￥{{product.price * product.quantity}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='footer'>
+        <view class='time'>{{item.time}}</view>
+        <view class='count'>￥ {{item.count}}</view>
+        <view class='button'>查看详情</view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

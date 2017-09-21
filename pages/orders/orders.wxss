@@ -1,96 +1,132 @@
 /* pages/orders/orders.wxss */
-.selectModal {
-  position: absolute;
-  top: 0;
-  left: 0;
+.container {
+  position: fixed;
+  background-color: #F5F5F5;
   width: 100%;
   height: 100%;
 }
 
-.selectModal .selectModal_mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: 0.6;
-}
-
-.selectModal .selectModal_content {
-  position: fixed;
-	top: 250rpx;
-	left: 0;
-	width: 100%;
-	height: 300px; 
-	/*box-shadow: 10rpx 0 30rpx rgba(0,0,0,.9);*/
-	background: #fff;
-  text-align: center;
-  font-size:35rpx;
-	z-index: 99;
-}
-
-.selectModal .selectModal_content .header {
+.orders {
   display: inline-block;
-  height: 50rpx;
-  width: 100%;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  border-bottom: 1rpx solid #E8E7E3;
-  font-size:38rpx;
+  width: 93%;
+  height: 400rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  background-color: #FFF;
+  border: 1px solid #E8E7E3;
 }
 
-.selectModal .selectModal_content .select {
-  float: left;
-  height: 120rpx;
-  width: 100%;
-  padding-top: 20rpx;
-  padding-left: 10rpx;
-  text-align: left;
-  color: #939393;
-
-}
-
-.selectModal .selectModal_content .select .select_content {
+.orders .header {
   display: inline-block;
-  margin-top: 10rpx;
-  margin-right: 20rpx;
-  height: 60rpx;
-  width: 120rpx;
-  text-align: center;
-  line-height: 60rpx;
-  border: 1rpx solid #939393;
-}
-
-.select_active {
-  border: 1rpx solid red !important;
-  color: red;
-}
-
-.selectModal .selectModal_content .footer {  
-  position: absolute;
-  bottom: 0;
-  height: 100rpx;
   width: 100%;
-}
-
-.selectModal .selectModal_content .footer .price {
-  float: left;
-  width: 30%;
   height: 80rpx;
   line-height: 80rpx;
-  color: red;
-  font-size: 40rpx;
-}
-
-.selectModal .selectModal_content .footer .button {
-  float: right;
-  width: 30%;
-  height: 80rpx;
-  line-height: 80rpx;
-  margin-bottom: 20rpx;
-  margin-right: 20rpx;
   font-size: 35rpx;
-  color: #fff;
-  background-color: red;
+  border-bottom: 1px solid #E8E7E3;
+}
+
+.orders .header .number {
+  float: left;
+  margin-left: 10rpx;
+}
+
+.orders .header .status {
+  float: right;
+  margin-right: 30rpx;
+  color: red;
+}
+
+.orders .content {
+  display: inline-block;
+  width: 100%;
+  height: 260rpx;
+}
+
+.orders .content .products {
+  padding-top: 5rpx;
+  float: left;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.orders .content .products .product {
+  float: left;
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 1rpx dotted #939393;
+}
+
+.orders .content .products .product .title {
+  float: left;
+  padding-left: 20rpx;
+  width: 50%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 35rpx;
+}
+
+.orders .content .products .price {
+  float: left;
+  width: 45%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 35rpx;
+  color: orange;
+  text-align: right;
+}
+
+.orders .content .products .product .size {
+  float: left;
+  width: 70%;
+  height: 65rpx;
+  padding-left: 20rpx;
+  font-size: 32rpx;
+  margin-top: 15rpx;
+  color: #939393;
+ 
+}
+
+.orders .content .products .product .size_count {
+  float: left;
+  width: 25%;
+  height: 100%;
+  text-align: right;
+  margin-top: 15rpx;
+  color: red;
+  
+}
+
+.orders .footer {
+  display: inline-block;
+  margin-top: -20rpx;
+  width: 100%;
+  height: 60rpx;
+  background-color: #FFF;
+}
+
+.orders .footer .time {
+  float: left;
+  width: 40%;
+  line-height: 60rpx;
+  font-size: 30rpx;
+}
+
+.orders .footer .count {
+  float: left;
+  margin-top: 3rpx;
+  width: 30%;
+  height: 60rpx;
+  color: red;
+ 
+}
+
+.orders .footer .button {
+  float: left;
+  width: 30%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 35rpx;
+  text-align: center;
+  color: #FFF;
+  background-color: orangered;
 }
