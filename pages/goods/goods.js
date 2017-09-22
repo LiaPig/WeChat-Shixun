@@ -580,7 +580,14 @@ Page({
         }
       }
     })
+  },
+
+  //点击“选好了”跳转到支付页面
+  goToPay: function(){
+    const that = this;
+    const cartObjects = that.data.cartObjects;
+    wx.navigateTo({
+      url: '../to-pay/to-pay?cartObjects=' + JSON.stringify(cartObjects),
+    })
   }
-
-
 })

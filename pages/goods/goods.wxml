@@ -117,7 +117,7 @@
         </view> 
       </view>
       <!-- 购物车的右边：点击跳转到订单页面 -->
-      <view class='cart_right_active'>选好了</view>  
+      <view class='cart_right_active' bindtap='goToPay'>选好了</view>  
     </view>
 
     <!-- 如果购物车为空，则显示 -->

@@ -1,34 +1,54 @@
 /**user.wxss**/
 .userinfo {
-  position:relative;
-  background: #F9FAFC;
+  display: inline-block;
   width: 100%;
-  height: 35%;
+  height: 300rpx;
+  text-align: center;
+  background-color: red;
 }
+
+.userinfo button {
+  display: inline-block;
+  width: 50%;
+  margin-left: 25%;
+  background-color: #fff;
+  color: red;
+  border: 1rpx solid #fff;
+}
+
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin-top: 50rpx;
   border-radius: 50%;
+  text-align: center;
 }
+
 .userinfo-nickname {
-  position: absolute; 
-  top: 64rpx;
+  display: inline-block;
   font-family: "Tahoma";
+  color: #fff;
 }
 
 .button-group {
-  top: 25rpx;
   position:relative;
-  background: #F9FAFC;
+  top: 50rpx;
   width: 100%;
+  height: 700rpx;
+  background: #F9FAFC;
+  
 }
 .button-group button {
-  background-color: #F9FAFC;
+  display: inline-block;
+  margin-top: 10rpx;
   width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
   font-family: "SimSun";
   text-align: left;
   border: none;
+  background-color: #F9FAFC;
 }
 
 

@@ -93,7 +93,7 @@
 
 .info .footer {
   display: inline-block;
-  margin-top: -10rpx;
+  margin-top: -20rpx;
   width: 100%;
   height: 80rpx;
   line-height: 80rpx;
