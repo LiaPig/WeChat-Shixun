@@ -20,7 +20,7 @@
 
 .order {
   display: inline-block;
-  width: 84%;
+  width: 94%;
   height: 325rpx;
   margin: 20rpx 20rpx 20rpx 20rpx;
   background-color: #FFF;
@@ -35,7 +35,7 @@
   display: inline-block;
   position: absolute;
   top: 400rpx;
-  width: 84%;
+  width: 94%;
   height: 400rpx;
   margin: 20rpx 20rpx 20rpx 20rpx;
   background-color: #FFF;
