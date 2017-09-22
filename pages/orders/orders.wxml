@@ -25,7 +25,7 @@
       <view class='footer'>
         <view class='time'>{{item.time}}</view>
         <view class='count'>￥ {{item.count}}</view>
-        <view class='button'>查看详情</view>
+        <view class='button' data-id='{{item.id}}' bindtap='goToDetail'>查看详情</view>
       </view>
     </view>
   </block>

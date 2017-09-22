@@ -167,9 +167,11 @@ Page({
       }
     ]
   },
-  gogogo: function(){
+
+  goToDetail: function(e){
+    const id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../test/test',
+      url: '../order-detail/order-detail?id=' + id,
     })
   },
 

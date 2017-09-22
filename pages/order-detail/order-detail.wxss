@@ -1,0 +1,115 @@
+/* pages/order-detail/order-detail.wxss */
+.container {
+  position: fixed;
+  background-color: #F5F5F5;
+  width: 100%;
+  height: 100%;
+}
+
+.introduce {
+  display: inline-block;
+  width: 97%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  color: #939393;
+  border-bottom: 1px solid #E8E7E3;
+  
+}
+
+.order {
+  display: inline-block;
+  width: 84%;
+  height: 325rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  background-color: #FFF;
+  border: 1px solid #E8E7E3;
+}
+
+.order text {
+  color: #000;
+}
+
+.info {
+  display: inline-block;
+  position: absolute;
+  top: 400rpx;
+  width: 84%;
+  height: 400rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  background-color: #FFF;
+  border: 1px solid #E8E7E3;
+}
+
+.info .products {
+  display: inline-block;
+  width: 97%;
+  height: 240rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  color: #939393;
+  border-bottom: 1px solid #E8E7E3;
+}
+
+.info .products .title_size {
+  float: left;
+  height: 120rpx;
+  width: 60%;
+}
+
+.info .products .title_size .title {
+  float: left;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #000;
+}
+
+
+.info .products .title_size .size {
+  float: left;
+  width: 25%;
+  height: 50rpx;
+  line-height: 50rpx;
+  
+}
+
+.info .products .quantity {
+  float: left;
+  height: 120rpx;
+  width: 15%;
+  text-align: center;
+}
+
+.info .products .price {
+  float: left;
+  height: 120rpx;
+  width: 25%;
+  color: #000;
+  text-align: center;
+}
+
+.info .footer {
+  display: inline-block;
+  margin-top: -10rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #939393;
+}
+
+.info .footer .count {
+  float: right;
+  width: 25%;
+  text-align: center;
+  color: red;
+}
+
+.info .footer text {
+  float: right;
+  width: 15%;
+  text-align: center;
+}

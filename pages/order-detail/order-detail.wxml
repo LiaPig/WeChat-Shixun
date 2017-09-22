@@ -1,0 +1,38 @@
+<!--pages/order-detail/order-detail.wxml-->
+<view class='container'>
+  <!-- 订单详情 -->
+  <view class='order'>
+    <view class='introduce'>订单详情</view>
+    <view class='introduce'>
+      订单号码：<text> {{order.id}}</text>
+    </view>
+    <view class='introduce'>
+      订单时间：<text> {{order.time}}</text>
+    </view>
+    <view class='introduce'>
+      订单状态：<text style='color: red;'> {{order.status}}</text>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class='info'>
+    <view class='introduce'>订单信息</view>
+    <scroll-view class='products' scroll-y style="height: 240rpx;">
+      <block class='products' wx:for='{{order.products}}' wx:key=''>
+        <view class='title_size'>
+          <view class='title'>{{item.title}}</view>
+          <block wx:for='{{item.size}}' wx:for-item='size' wx:key=''>
+            <text class='size'>{{size.name}}、</text>
+          </block>
+        </view>
+        <view class='quantity'>× {{item.quantity}}</view>
+        <view class='price'>￥ {{item.price}}</view>
+      </block>
+    </scroll-view>
+    <view class='footer'>
+      <view class='count'>￥ {{order.count}}</view>
+      <text>总计</text>
+    </view>
+    
+  </view>
+  <!-- {{}} -->
+</view>
