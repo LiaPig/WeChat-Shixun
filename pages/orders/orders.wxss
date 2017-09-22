@@ -8,7 +8,7 @@
 
 .orders {
   display: inline-block;
-  width: 93%;
+  width: 84%;
   height: 400rpx;
   margin: 20rpx 20rpx 20rpx 20rpx;
   background-color: #FFF;
