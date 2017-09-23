@@ -1,2 +1,41 @@
 <!--pages/to-pay/to-pay.wxml-->
-<text>pages/to-pay/to-pay.wxml</text>
+<view class='container'>
+  <view class='tips'>
+    <text>取餐时间</text>
+    <text class='aaa'> 猪崽制作中,尽快为您服务</text>
+  </view>
+
+  <view class='order'>
+    <view class='introduce'>订单详情</view>
+    <scroll-view class='content' scroll-y style="height: 480rpx;">
+      <block class='product' wx:for='{{order.products}}' wx:key=''>
+        <view class='title_size'>
+          <view class='title'>{{item.title}}</view>
+           <block wx:for='{{item.size}}' wx:for-item='size' wx:key=''>
+            <text class='size'>{{size.name}}、</text>
+          </block> 
+        </view>
+         <view class='quantity'>× {{item.quantity}}</view>
+        <view class='price'>￥ {{item.price}}</view> 
+        <view class='wall'></view>
+      </block>
+    </scroll-view>
+    <view class='footer'>
+      <view class='count'>￥ {{order.count}}</view>
+      <text>总计</text>
+    </view>
+  </view>
+
+  <view class='description'>
+    <text>备注（20字以内）</text>
+    <input placeholder="如有口味要求、请输入备注" 
+              placeholder-style="color:red;"
+              maxlength="20"
+              bindblur="bindTextBlur" 
+              value="{{description}}"  />
+  </view>
+
+  <view class='button'>
+    <button type='warn'>确认订单</button>
+  </view>
+</view>

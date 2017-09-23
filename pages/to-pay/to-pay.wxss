@@ -1,1 +1,142 @@
 /* pages/to-pay/to-pay.wxss */
+.container {
+  position: fixed;
+  background-color: #F5F5F5;
+  width: 100%;
+  height: 100%;
+}
+
+.tips {
+  display: inline-block;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  background-color: #fff;
+}
+
+.tips .aaa {
+  float: right;
+  width: 50%;
+  height: 100%;
+  line-height: 100rpx;
+  font-size: 31rpx;
+  color: red;
+}
+
+.introduce {
+  display: inline-block;
+  width: 97%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  color: #939393;
+  border-bottom: 1px solid #E8E7E3;
+}
+
+.order {
+  position: absolute;
+  top: 150rpx;
+  width: 100%;
+  height: 660rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  background-color: #fff;
+}
+
+.order .content {
+  float: left;
+  width: 100%;
+  height: 480rpx;
+  color: #939393;
+  border-bottom: 1px solid #E8E7E3;
+  margin-bottom: 0;
+}
+
+.order .content .product {
+  display: inline-block;
+  width: 100%;
+  height: 120rpx;
+}
+
+.title_size {
+  float: left;
+  height: 120rpx;
+  width: 60%;
+}
+
+.title_size .title {
+  float: left;
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #000;
+} 
+
+
+.title_size .size {
+  float: left;
+  margin-top: 5rpx;
+  width: 25%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  color: #939393;
+} 
+
+.quantity {
+  float: left;
+  height: 95rpx;
+  width: 15%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.price {
+  float: left;
+  height: 95rpx;
+  width: 25%;
+  color: #000;
+  text-align: left;
+  font-size: 30rpx;
+}
+
+.order .footer {
+  float: left;
+  width: 100%;
+  height: 100rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #939393;
+}
+
+.order .footer .count {
+  float: right;
+  width: 25%;
+  color: red;
+}
+
+.order .footer text {
+  float: right;
+  width: 15%;
+  text-align: center;
+}
+
+.description {
+  position: absolute;
+  top: 850rpx;
+  width: 100%;
+  height: 200rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  color: #939393;
+}
+
+.description input {
+  height: 80rpx;
+  width: 95%;
+  background: #F7F7F7;
+}
