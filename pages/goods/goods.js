@@ -587,7 +587,7 @@ Page({
     const that = this;
     const cartObjects = that.data.cartObjects;
     wx.navigateTo({
-      url: '../to-pay/to-pay?cartObjects=' + JSON.stringify(cartObjects),
+      url: '../to-pay/to-pay?cartObjects='  + JSON.stringify(cartObjects) ,
     })
   }
 })
