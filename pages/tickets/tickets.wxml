@@ -1,6 +1,6 @@
 <!--pages/tickets/tickets.wxml-->
 <view class='container'>
-  <block wx:for="{{tickets}}" wx-key=''>
+  <block wx:for="{{tickets}}" wx:key=''>
     <view class='ticket'>
       <view class='left'>
         <view class='price'>
