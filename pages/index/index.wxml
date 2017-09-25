@@ -11,5 +11,10 @@
     </block>
   </swiper>
 
-  <button class="mybutton" hover-class="mybutton-hover" bindtap="goToShop"> 现在开始买猪*(oo)*  </button>
+  <button class="mybutton1" 
+          hover-class="mybutton1-hover" 
+          bindtap="goToShop"> 现在开始买猪*(oo)*  </button>
+  <button class="mybutton2" 
+          hover-class="mybutton2-hover" 
+          bindtap="goToTickets"> 领取猪优惠券*(oo)*  </button>
 </view>

@@ -3,12 +3,12 @@
     
     "pages/index/index",
     "pages/orders/orders",
-    "pages/user/user",
-    "pages/goods/goods",
+    "pages/tickets/tickets",
+    "pages/products/products",
     "pages/to-pay/to-pay",
     "pages/order-detail/order-detail",
-    "pages/test/test"
-    
+    "pages/test/test",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,12 +8,25 @@ swiper image {
   height: 500rpx;
 }
 
-.mybutton {
+.mybutton1 {
   background-color: green;
   top: 100rpx;
   width: 100%;
   color: white;
 }
-.mybutton-hover {
+
+.mybutton1-hover {
   background-color: pink;
+}
+
+.mybutton2 {
+  margin-top: 20rpx;
+  background-color: pink;
+  top: 100rpx;
+  width: 100%;
+  color: white;
+}
+
+.mybutton2-hover {
+  background-color: green;
 }

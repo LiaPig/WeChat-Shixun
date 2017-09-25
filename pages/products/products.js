@@ -1,3 +1,5 @@
+const datou = getApp().globalData.datou;
+
 Page({
 
   /**
@@ -203,6 +205,19 @@ Page({
     //购物车里的内容
     cartObjects: [],
     size:[]
+  },
+
+  onLoad: function () {
+    getProducts: 
+      wx.request({
+        url: datou + "/api/products",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data)
+        } 
+      })
   },
 
   //根据左边的分类切换对应的商品

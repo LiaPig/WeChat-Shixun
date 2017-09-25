@@ -37,6 +37,7 @@ App({
     console.log(msg)
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    datou: "http://api.leewaiho.com"
   }
 })
