@@ -9,12 +9,12 @@ Page({
       {
         id: 1,
         price: 0.01,
-        destription: "便宜你一分钱哦",
+        description: "便宜你一分钱哦,开心吗",
       },
       {
         id: 2,
         price: 0.02,
-        destription: "便宜你两分钱哦",
+        description: "便宜你两分钱哦",
       },
     ],
     aaa:1
@@ -27,52 +27,12 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  //领取优惠券
+  addTicket: function(e){
+    //判断是否有这张优惠券
+    //1.如果有，提示已经有了这张优惠券啦，改变样式
+    //2.如果没，把这张优惠券加入到用户的卡包中，改变样式
+    const id = e.currentTarget.dataset;
+    console.log(id);
   }
 })

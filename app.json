@@ -1,9 +1,9 @@
 {
   "pages": [
-    
+    "pages/tickets/tickets",
     "pages/index/index",
     "pages/orders/orders",
-    "pages/tickets/tickets",
+    
     "pages/products/products",
     "pages/to-pay/to-pay",
     "pages/order-detail/order-detail",

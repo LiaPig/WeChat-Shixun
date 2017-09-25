@@ -2,12 +2,15 @@
 <view class='container'>
   <block wx:for="{{tickets}}" wx-key=''>
     <view class='ticket'>
-      <view class='left'></view>
-      <view class='right'>
+      <view class='left'>
         <view class='price'>
-          {{item.price}}
+          {{item.price}} 
         </view>
-        <view></view>
+        <view>元优惠券</view>
+      </view>
+      <view class='right' bindtap='addTicket' data-id='{{item.id}}'>
+        <view class='description'>{{item.description}}</view>
+        <view class='button'>点击领取 <text class='fa fa-hand-o-left'></text></view>
       </view>
     </view>
   </block>

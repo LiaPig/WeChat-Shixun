@@ -5,5 +5,40 @@
   height: 200rpx;
   margin-bottom: 50rpx;
   text-align: center;
+  border: 3rpx solid pink;
+}
+
+.ticket .left {
+  float: left;
+  width: 60%;
+  height: 100%;
+  background: #fff;
+  color: pink;
+}
+
+.ticket .left .price {
+  font-size: 100rpx;
+}
+
+.ticket .right {
+  float: left;
+  width: 40%;
+  height: 100%;
   background: pink;
+  color: #fff;
+}
+
+.ticket .right .description {
+  height: 120rpx;
+}
+
+.ticket .right .button {
+  margin-top: 10rpx;
+  margin-left: 50rpx;
+  width: 70%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  background: #fff;
+  color: pink;
 }

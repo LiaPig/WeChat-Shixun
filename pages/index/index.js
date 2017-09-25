@@ -26,7 +26,7 @@ Page({
     })
     //第二步，获取轮播图
     wx.request({
-      url: datou + "/api/images?type=swiper",
+      url: datou + "/api/images?type=swiper&sort=sort,desc",
       success: function (res) {
         const pics = res.data.data.content;
         const imgUrls = [];
