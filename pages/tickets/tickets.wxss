@@ -42,3 +42,8 @@
   background: #fff;
   color: pink;
 }
+
+.ticket .right .has {
+  background: gray;
+  color: #fff;
+}

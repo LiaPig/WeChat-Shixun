@@ -8,9 +8,12 @@
         </view>
         <view>元优惠券</view>
       </view>
-      <view class='right' bindtap='addTicket' data-id='{{item.id}}'>
+      <view class='right' bindtap='addTicket' data-id='{{item.id}}' data-price='{{item.price}}'>
         <view class='description'>{{item.description}}</view>
-        <view class='button'>点击领取 <text class='fa fa-hand-o-left'></text></view>
+        <view class='button' wx:if='{{!item.has}}'>
+          点击领取 <text class='fa fa-hand-o-left'></text>
+        </view>
+        <view class='button has' wx:else>已经领取 <text class='fa fa-hand-o-left'></text></view>
       </view>
     </view>
   </block>

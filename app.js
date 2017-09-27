@@ -38,6 +38,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    datou: "http://api.leewaiho.com"
+    datou: "https://api.leewaiho.com"
   }
 })
