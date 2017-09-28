@@ -462,13 +462,13 @@ Page({
         if (res.confirm) {
           let cartObjects = that.data.cartObjects;
           const curIndex = that.data.curIndex;
-          let goods = that.data.goods;
+          let products = that.data.products;
           for(let i = 0; i < cartObjects.length; i++){
-            const index = goods[curIndex].nodes.findIndex(o => o.id === cartObjects[i].id);
-            goods[curIndex].nodes[index].preOrder = 0;
+            const index = products[curIndex].nodes.findIndex(o => o.id === cartObjects[i].id);
+            products[curIndex].nodes[index].quantity = 0;
           }
           that.setData({ 
-            goods: goods,
+            products: products,
             count: 0,
             sum: 0,
             cartObjects: null,
