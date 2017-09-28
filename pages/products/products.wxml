@@ -1,14 +1,14 @@
 <view class="container_nav">
   <!--左侧栏-->
   <view class="nav_left">
-    <block wx:for="{{goods}}" wx:key="id">
+    <block wx:for="{{productCategory}}" wx:key="id">
       <!--当前项的id等于item项的id，那个就是当前状态-->
       <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用-->
       <view class="nav_left_items {{curNav === item.id ? 'active' : ''}}" 
             bindtap="switchRightTab" 
             data-index="{{index}}" 
             data-id="{{item.id}}">
-        {{item.title}}
+        {{item.name}}
       </view>
     </block>
   </view>
@@ -16,35 +16,36 @@
   <!--右侧栏-->
   <view class="nav_right">
     <!--如果有数据，才遍历项-->
-    <view wx:if="{{goods[curIndex].nodes[0]}}">
-      <block wx:for="{{goods[curIndex].nodes}}" wx:key="id">
+    <view wx:if="{{products[curIndex].nodes}}">
+      <block wx:for="{{products[curIndex].nodes}}" wx:key="id">
         <view class="nav_right_items">    
           <!-- 商品的logo图 -->
           <view class="logo">
-            <image src="{{item.logoSrc}}" ></image>
+             <image wx:if="{{item.productImages[0].url}}" src="{{item.productImages[0].url}}"></image> 
+            <image wx:else src="../../images/goods/2.jpg" ></image>
           </view>
 
           <!-- 商品的内容：标题、具体描述、价格 -->
           <view class="content">
-            <text class="content_title">{{item.title}}</text>
+            <text class="content_title">{{item.name}}</text>
             <text class='content_description'>{{item.description}}</text>
-            <text class="content_price">￥{{item.price}}</text>
+            <text class="content_price">￥{{item.basePrice}}</text>
           </view>
 
           <!-- 操作 -->
           <view class="add">
             <!-- 当预购数量大于0才显示的减少按钮 -->
-            <text wx:if="{{item.preOrder}}" 
+            <text wx:if="{{item.quantity > 0}}" 
                   class="fa fa-minus-square fa-lg"
-                  bindtap="reducePreOrder"
+                  bindtap="reduce"
                   data-index="{{index}}"
                   style='float:left;'> </text>
             <!-- 当预购数量大于0才显示的预购数量 -->
-            <text wx:if="{{item.preOrder}}">  {{item.preOrder}} </text>
+            <text wx:if="{{item.quantity > 0}}">  {{item.quantity}} </text>
             <!-- 增加按钮 -->
             <text class="fa fa-plus-square fa-lg" 
                   style='color: red;'
-                  bindtap='addPreOrder'
+                  bindtap='add'
                   data-index="{{index}}"
                   style='float:right;'> </text>
             <!-- 增加按钮会引发的弹窗层 -->
@@ -56,30 +57,30 @@
               <!-- 内容层 -->
               <view animation="{{animationContent}}" class="selectModal_content">
                 <!-- 标题 -->
-                <view class='header'>{{curGood.title}}</view>
+                <view class='header'>{{curProduct.name}}</view>
                 <!-- 选择内容 -->
-                <view wx:if="{{curGood.options.length}}"
-                       wx:for="{{curGood.options}}" 
-                       wx:for-item="options" 
+                <view wx:if="{{curProduct.productTags.length !== 0}}"
+                       wx:for="{{curProduct.productTags}}" 
+                       wx:for-item="tags" 
                        wx:key="">
                   <view class='select'>
-                    <view class='select_title'>{{options.title}}</view>
-                    <block wx:for="{{options.select}}" 
-                           wx:for-item="select" 
+                    <view class='select_title'>{{tags.name}}</view>
+                    <block wx:for="{{tags.tagOptions}}" 
+                           wx:for-item="options" 
                            wx:key="">
                       <view bindtap="swiperChange"
-                            data-id="{{options.id}}"
-                            data-title="{{options.title}}"
-                            data-checked="{{select.checked}}"
-                            data-name="{{select.name}}"
-                            data-value="{{select.value}}"
-                            class='select_content {{select.checked?"select_active": ""}}' >
-                      {{select.name}}</view>
+                            data-id="{{tags.id}}"
+                            data-name="{{tags.name}}"
+                            data-checked="{{options.checked}}"
+                            data-optionName="{{options.optionName}}"
+                            data-value="{{options.value}}"
+                            class='select_content {{options.checked?"select_active": ""}}' >
+                      {{options.optionName}}</view>
                     </block>       
                   </view>       
                 </view>
-                <view wx:if="{{!curGood.options.length}}">
-                  <text>确定加入到购物车吗？</text>
+                <view wx:if="{{curProduct.productTags.length === 0}}">
+                  <text style='display:inline-block;margin-top: 200rpx;'>确定加入到购物车吗？</text>
                 </view>
                 <!-- 底部 -->
                 <view class='footer'>
@@ -94,8 +95,7 @@
       </view>
 
     <!--如果无数据，则显示数据-->
-    <view wx:else>暂无这类猪崽的数据•̀(oo)•́</view>
-    
+    <view wx:if="{{!products[curIndex].nodes || products[curIndex].nodes.length === 0 }}">暂无这类猪崽的数据•̀(oo)•́</view>
   </view>
 
   <!-- 最底部的购物车 -->
@@ -163,25 +163,26 @@
         <!-- 在购物车的商品 -->
         <view class='body_item' 
               wx:for="{{cartObjects}}" 
+              wx:for-item="product"
               wx:key="">
           <view class='information'>
             <view class='body_item_title'>
-              <text class='fa fa-smile-o'> {{item.title}}</text>  
+              <text class='fa fa-smile-o'> {{product.name}}</text>  
             </view>
             <text class='body_item_size' 
-                  wx:for="{{item.size}}"
-                  wx:for-item="size" 
-                  wx:key="">{{size.name}}、</text>
+                  wx:for="{{product.productTags}}"
+                  wx:for-item="productTags" 
+                  wx:key="">{{productTags.optionName}}、</text>
           </view>
-          <view class="body_item_fee">￥{{item.price * item.quantity}}</view>
+          <view class="body_item_fee">￥{{product.basePrice * product.quantity}}</view>
           <view class='button_group'>
             <!-- 减少按钮 -->
             <text class="fa fa-minus-square fa-lg"
                   bindtap="reduceQuantity"
                   data-index="{{index}}"
                   style='float:left;line-height: 75px;'> </text>    
-            <!-- 当预购数量大于0才显示的预购数量 -->
-            <text style='color: red;'>  {{item.quantity}} </text>
+            <!-- 预购数量 -->
+            <text style='color: red;'>  {{product.quantity}} </text>
             <!-- 增加按钮 -->
             <text class="fa fa-plus-square fa-lg" 
                   bindtap='addQuantity'

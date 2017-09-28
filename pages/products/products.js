@@ -6,218 +6,64 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //商品分类对象
+    productCategory: null,
+    //当前导航页
+    curNav: 1,
+    //当前导航的索引
+    index: null,
+    //商品
+    products: null,
+    //弹窗要用到的当前商品的索引
+    curProductIndex: 0,
+    //弹窗要用的当前商品
+    curProduct: null,
+    //弹窗要用到的当前商品的属性标签
+    curProductTags: [],
+    //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框 
+    //hiddenmodalput: true,
+    hiddenSelectModal: true,
     //购物车的数量
     count: 0,
     //购物车的总价
     sum: 0,
-    //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框 
-    //hiddenmodalput: true,
-    hiddenSelectModal: true,
-    //当前导航页
-    curNav: 1,
-    //当前导航的索引
-    curIndex: 0,
-    //当前商品的索引
-    curGoodIndex: 0,
-    //弹窗要用的当前商品
-    curGood: null,
-    //商品的标签
-    good_size: [],
-    //商品
-    goods:[
-      {
-        id: 1,
-        title: "热销推荐",
-        level: "level1",
-        logoSrc: null,
-        nodes: [
-          {
-            id: 1,
-            title: "卖萌猪崽",
-            level: "level2",
-            logoSrc: "../../images/goods/1.png",
-            description: "可爱的猪崽可爱的猪崽可爱的猪崽可爱的猪崽",
-            price: "0.02",
-            preOrder: 0,
-            quantity: 1,
-            nodes: null,
-            size: [],
-            options: [
-              {
-                id: 1,
-                title: "体重",
-                select: [
-                  { name: '1kg', value: '1', checked: 'true' },
-                  { name: '2kg', value: '2' },
-                  { name: '3kg', value: '3' },
-                  { name: '4kg', value: '4' },
-                  { name: '5kg', value: '5' },
-                ]
-              },
-              {
-                id: 2,
-                title: "种类",
-                select: [
-                  { name: 'A类', value: 'A', checked: 'true' },
-                  { name: 'B类', value: 'B' },
-                  { name: 'C类', value: 'C' }
-                ]
-              }
-            ]
-          },
-          {
-            id: 2,
-            title: "小黑猪崽",
-            level: "level2",
-            logoSrc: "../../images/goods/2.png",
-            description: "黑色的猪崽",
-            price: "0.01",
-            preOrder: 0,
-            quantity: 1,
-            nodes: null,
-            options: null
-          }
-        ] 
-      },
-      {
-        id: 2,
-        title: "单品区",
-        level: "level1",
-        logoSrc: null,
-        nodes: [
-          {
-            id: 1,
-            title: "卖萌猪崽",
-            level: "level2",
-            logoSrc: "../../images/goods/1.png",
-            description: "可爱的猪崽可爱的猪崽可爱的猪崽可爱的猪崽",
-            price: "0.02",
-            preOrder: 0,
-            nodes: null,
-            options: [
-              {
-                title: "国家",
-                select: [
-                  { name: 'USA', value: '美国' },
-                  { name: 'CHN', value: '中国', checked: 'true' },
-                  { name: 'BRA', value: '巴西' },
-                  { name: 'JPN', value: '日本' },
-                  { name: 'ENG', value: '英国' },
-                  { name: 'TUR', value: '法国' }
-                ]
-              },
-              {
-                title: "字母",
-                select: [
-                  { name: 'A', value: 'A', checked: 'true' },
-                  { name: 'B', value: 'B' },
-                  { name: 'C', value: 'C' }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: 3,
-        title: "双拼猪崽",
-        level: "level1",
-        logoSrc: null,
-        nodes: [
-          {
-            id: 3,
-            title: "普通黑白猪双拼",
-            level: "level2",
-            logoSrc: "../../images/goods/3.jpg",
-            description: "一只黑的一只粉的",
-            price: "0.03",
-            preOrder: 0,
-            nodes: null,
-            options: [
-              {
-                title: "国家",
-                select: [
-                  { name: 'USA', value: '美国' },
-                  { name: 'CHN', value: '中国', checked: 'true' },
-                  { name: 'BRA', value: '巴西' },
-                  { name: 'JPN', value: '日本' },
-                  { name: 'ENG', value: '英国' },
-                  { name: 'TUR', value: '法国' }
-                ]
-              },
-              {
-                title: "字母",
-                select: [
-                  { name: 'A', value: 'A', checked: 'true' },
-                  { name: 'B', value: 'B' },
-                  { name: 'C', value: 'C' }
-                ]
-              }
-            ]
-          },
-          {
-            id: 4,
-            title: "浴帽可爱猪崽们",
-            level: "level2",
-            logoSrc: "../../images/goods/4.jpg",
-            description: "刚洗完白白的香香猪",
-            price: "0.05",
-            preOrder: 0,
-            nodes: null,
-            options: [
-              {
-                title: "国家",
-                select: [
-                  { name: 'USA', value: '美国' },
-                  { name: 'CHN', value: '中国', checked: 'true' },
-                  { name: 'BRA', value: '巴西' },
-                  { name: 'JPN', value: '日本' },
-                  { name: 'ENG', value: '英国' },
-                  { name: 'TUR', value: '法国' }
-                ]
-              },
-              {
-                title: "字母",
-                select: [
-                  { name: 'A', value: 'A', checked: 'true' },
-                  { name: 'B', value: 'B' },
-                  { name: 'C', value: 'C' }
-                ]
-              }
-            ]
-          }
-        ]
-       
-      },
-      {
-        id: 4,
-        title: "三拼猪崽",
-        level: "level1",
-        logoSrc: null,
-        preOrder: 0,
-        nodes: null
-      }
-    ],
     //是否显示具体购物车弹窗
     showCartModalStatus: false,
     //购物车弹窗的高度
     scrollHeight: 150,
     //购物车里的内容
-    cartObjects: [],
-    size:[]
+    cartObjects: []
+    
+    
   },
 
   onLoad: function () {
-    getProducts: 
-      wx.request({
-        url: datou + "/api/products",
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res.data)
-        } 
-      })
+    const that = this;
+    //第一步：获取商品分类
+    wx.request({
+      url: datou + "/api/tags?type=productCategory",
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //自己组装一个e对象来复用switchRightTab函数,使得商品能加载出来
+        const e = {
+          target: {
+            dataset: {
+              id: res.data.data.content[0].id,
+              index: 0
+            }
+          }
+        }
+        that.switchRightTab(e);
+        
+        that.setData({
+          productCategory: res.data.data.content,
+        }) 
+        that.getAllProducts();
+      }
+    }) 
+    
   },
 
   //根据左边的分类切换对应的商品
@@ -232,51 +78,86 @@ Page({
     })
   },
 
+  // 获取所有商品
+  getAllProducts: function(){
+    const that = this;
+    let productCategory = that.data.productCategory;
+    let products = productCategory;
+    //遍历所有商品标签分类，根据分类id来找出所有在当前分类标签的商品
+    for (let i = 0; i < products.length; i++) {
+      products[i].nodes = [];
+      wx.request({
+        url: datou + "/api/products/tag/" + products[i].id,
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          for (let item of res.data.data.content){
+            item.quantity = 0;
+            products[i].nodes.push(item);
+          }
+          that.setData({
+            products: products
+          })
+        }
+      }) 
+    }
+  },
+
   //点击“+”加号按钮
-  addPreOrder: function (e){
-    //第一步： 获取到当前商品对象good
+  add: function (e){
+    //第一步： 获取到当前商品对象product
     const that = this;
     const index = e.currentTarget.dataset.index;
     const navIndex = that.data.curIndex;
-    const goods = that.data.goods;
-    let good = goods[navIndex].nodes[index];
+    const products = that.data.products;
+    let product = products[navIndex].nodes[index];
     //第二步： 获取标签的默认值
-    const options = good.options;
-    let size = [];
-    if(options){
-      for (let i = 0; i < options.length; i++) {
-        let select = {
-          id: null,
-          title: null,
-          name: null,
-          value: null
-        };
-        select.id = options[i].id;
-        select.title = options[i].title;
-        const selects = options[i].select;
-        for (let j = 0; j < selects.length; j++) {
-          if (selects[j].checked) {
-            const name = selects[j].name;
-            const value = selects[j].value;
-            select.name = name;
-            select.value = value;
-            size.push(select);
-          }
+    const productTags = product.productTags;
+    let curProductTags = [];
+    if (productTags) {
+      for (let i = 0; i < productTags.length; i++) {
+        //如果是商品属性标签才执行
+        if (productTags[i].type === "product"){
+          let select = {
+            id: null,
+            name: null,
+            optionName: null,
+            value: null,
+          };
+          //设置id、name、
+          select.id = productTags[i].id;
+          select.name = productTags[i].name;
+          const selects = productTags[i].tagOptions;
+          //第一个属性标签就为默认值，添加默认样式
+          select.optionName = selects[0].optionName;
+          select.value = selects[0].value;
+          selects[0].checked = true;
+          //全部设置好了之后加入到curProductTags中,组装好了默认的标签
+          curProductTags.push(select);  
         }
       }
+      //过滤掉只留下标签为商品属性标签,给这些标签的第一个值加上默认样式
+      product.productTags = productTags.filter(o => o.type !== "productCategory");  
     }
-    //第三步： 存放好index、good与size以方便给弹窗使用，
+    //第三步： 存放好index、product与curProductTags以方便给弹窗使用，
     //第四步： 开启显示弹窗  
     that.setData({
-      curGoodIndex: index,
-      curGood: good,
-      size:size,
+      curIndex: navIndex,
+      curProductIndex: index,
+      curProduct: product,
+      curProductTags: curProductTags,
       hiddenSelectModal: false
     });
   },
 
   //点击“-”减号按钮
-  reducePreOrder: function (e) {
+  reduce: function (e) {
+
+    //把options 改成 productTags
+    //把size 改成 curProductTags
+
+
     //第一步： 获取到当前商品对象good,以及商品的标签
     const that = this;
     const index = e.currentTarget.dataset.index;
@@ -332,34 +213,38 @@ Page({
 
   // 点击select切换
   swiperChange: function (e) {
-    //第一步： 获取当前商品对象curGood,当前标签（规格）对象size
+    //第一步： 获取当前商品对象curProduct,当前更改了值的标签（规格）对象productTags，包含当前商品的所有标签信息的对象curProductTags
     const that = this;
-    let curGood = that.data.curGood;
-    let curSize = e.currentTarget.dataset;   
-    //第二步: 设置当前size对象的checked值本来为true的改为false,当前的为true
-    let curOption = curGood.options.find(o => o.id === curSize.id);
-    for (let i = 0; i < curOption.select.length; i++){
+    let curProduct = that.data.curProduct;
+    let productTag = e.currentTarget.dataset; 
+    let curProductTags = that.data.curProductTags; 
+    //第二步: 设置当前curProductTags对象中checked值本来为true的改为false,当前的为true的改为false
+    let tag = curProduct.productTags.find(o => o.id === productTag.id);
+    for (let i = 0; i < tag.tagOptions.length; i++){
       //checked值原本为true的改为false
-      if (curOption.select[i].checked){
-        curOption.select[i].checked = false;
+      if (tag.tagOptions[i].checked){
+        tag.tagOptions[i].checked = false;
       }
-      //当前size对象的checked和curGood中对应的改为true
-      if (curOption.select[i].name === curSize.name){
-        curOption.select[i].checked = true;
-        curSize.checked = true;
+      //当前curOption对象的checked和curGood中对应的改为true
+      //productTag.optionname正确optionName错误，这是data-的bug
+      if (tag.tagOptions[i].optionName === productTag.optionname){
+        tag.tagOptions[i].checked = true;
       }
     }
-    //第三步： 把修改的覆盖在封装的size对象，如果没修改就不覆盖
-    let size = that.data.size;
-    for (let i = 0; i < size.length; i++){
-      if (curSize.id === size[i].id){
-        size[i] = curSize;
+    //第三步： 把修改的覆盖在封装的curProductTags对象里，如果没修改就不覆盖
+    for (let i = 0; i < curProductTags.length; i++){
+       if (curProductTags[i].id === productTag.id){
+        curProductTags[i].id = productTag.id;
+        curProductTags[i].name = productTag.name;
+        curProductTags[i].optionName = productTag.optionname;
+        curProductTags[i].value = productTag.value;
       }
     }   
+   curProduct.quantity = 1;
     //第三步： 存储数据
     this.setData({
-      curGood: curGood,
-      size: size
+      curProduct: curProduct,
+      curProductTags: curProductTags
     })
   },
 
@@ -375,53 +260,51 @@ Page({
   },
 
   //弹窗的： 确认按钮  
-  confirm: function (e) {
-    // 第一步： 获取具体商品的index，goods对象，当前nav的index,以获得此时的商品对象good
+  confirm: function () {
+    // 第一步： 获取具体商品的index，products对象，当前nav的index,以获得此时的商品对象product
     const that = this;
-    const index = that.data.curGoodIndex;
+    const index = that.data.curProductIndex;
     const navIndex = that.data.curIndex;
-    let goods = this.data.goods;
-    let good = goods[navIndex].nodes[index];
-    //第二步： 获取封装的当前商品对象curGood
-    let curGood = this.data.curGood;
-    //第三步： 将选取的标签（规则）对象size存进curGood对象里
-    curGood.size = this.data.size;
-    const size = null;
+    let products = that.data.products;
+    let product = products[navIndex].nodes[index];
+    //第二步： 获取封装的当前商品对象curProduct
+    let curProduct = that.data.curProduct;
+    //第三步： 将选取的标签（规则）对象size存进curProduct对象里
+    curProduct.productTags = this.data.curProductTags;
     //第四步： 商品数量增加1
-    good.preOrder++;
+    product.quantity++;
     //第五步： 购物车的总量count加1,购物车的总价sum加上对应的price
-    let count = this.data.count;
+    let count = that.data.count;
     count ++;
-    const sum_string = this.data.sum;
-    const price = Number(good.price);  
+    const sum_string = that.data.sum;
+    const price = Number(product.basePrice);  
     let sum = Number(sum_string) + price;
     sum = sum.toFixed(2);
     //第六步： 将当前商品加入到购物车中
     let cartObjects = this.data.cartObjects;  
     //1.判断购物车不为空
-    if(cartObjects.length){
+    if(cartObjects.length){     
       //2.判断商品是否有标签（规格）
-      if(curGood.size.length){
+      if(curProduct.productTags.length){
         //3.判断购物车是否已经拥有了这个商品
         let flag = 0;
         for (let i = 0; i < cartObjects.length; i++) {
           //3.如果没有：
-          if (cartObjects[i].id !== curGood.id) {
+          if (cartObjects[i].id !== curProduct.id) {
             continue;
           }
           //3.如果有：
           else {
             let flag_equal = 0;
-            let cartObjectes_size_length = cartObjects[i].size.length;
             //4.判断这个商品的标签（规格）是否都一样
-            for (let j = 0; j < cartObjectes_size_length; j++) {
-              //4.存在id一样的标签 且 标签的value相等            
-              if (cartObjects[i].size[j].id === curGood.size[j].id && cartObjects[i].size[j].value === curGood.size[j].value) {
+            for (let j = 0; j < cartObjects[i].productTags.length; j++) {
+              //4.存在id一样的标签 且 标签的value相等      
+              if (cartObjects[i].productTags[j].id === curProduct.productTags[j].id && cartObjects[i].productTags[j].optionName === curProduct.productTags[j].optionName) {
                 flag_equal++;
               }
             }
             //5.全部标签都相等
-            if (flag_equal === cartObjectes_size_length) {
+            if (flag_equal === cartObjects[i].productTags.length) {
               cartObjects[i].quantity += 1;
               flag = 1;
               break;
@@ -429,39 +312,44 @@ Page({
           }
         } 
         //循环了所有购物车的对象都没有找到相同标签（规格）的，才加入到购物车！
-        if (flag === 0) {
-          cartObjects.push(curGood);
+        if (flag === 0) {    
+          curProduct.quantity = 1;
+          cartObjects.push(curProduct);
         }
       }
       //2.商品没有标签(规格)
       else{
         //3.是否已经有了这个商品
-        let obj = cartObjects.find(o => o.id === curGood.id);
-        let obj_index = cartObjects.findIndex(o => o.id === curGood.id);
+        let obj = cartObjects.find(o => o.id === curProduct.id);
+        let obj_index = cartObjects.findIndex(o => o.id === curProduct.id);
         //3.如果有
         if (obj) {
-          obj.quantity++; 
-          cartObjects[obj_index] = obj;
+          cartObjects[obj_index].quantity++;
         }
         //3.如果没
         else{
-          cartObjects.push(curGood);
+          curProduct.quantity++;
+          cartObjects.push(curProduct);
         }     
       }
     }
     //1.购物车为空， 直接添加
     else {
-      cartObjects.push(curGood);
+      curProduct.quantity = 1;
+      cartObjects.push(curProduct);
     }
+   
     //第七步： 储存值，关闭弹窗 
     this.setData({
-      size: size,
+      curProductTages: null,
+      curProduct: null,
       cartObjects: cartObjects,
-      goods: goods,
+      products: products,
       count: count,
       sum: sum,
       hiddenSelectModal: true
     });
+    console.log(cartObjects)
   },
 
   //点击了遮蔽层，隐藏Modal
@@ -490,85 +378,85 @@ Page({
   },
 
   //购物车里的商品：点击“+”
-  addQuantity: function(e){
-    //第一步： 获取在购物车中的当前商品
-    const that = this;
-    const index = e.currentTarget.dataset.index;
-    const navIndex = that.data.curIndex;
-    let goods = that.data.goods;
-    let cartObjects = that.data.cartObjects;
-    //第二步： 当前商品的数量加1
-    cartObjects[index].quantity++;
-    goods[navIndex].nodes[index].preOrder++;
-    //第三步： 购物车的总价钱count和总数量sum加上对应的
-    let count = this.data.count;
-    count++;
-    const sum_string = this.data.sum;
-    const price = Number(cartObjects[index].price);
-    let sum = Number(sum_string) + price;
-    sum = sum.toFixed(2);
-    //第四步： 更新数据
-    this.setData({
-      goods: goods,
-      cartObjects: cartObjects,
-      count: count,
-      sum: sum
-    }) 
-  },
+  // addQuantity: function(e){
+  //   //第一步： 获取在购物车中的当前商品
+  //   const that = this;
+  //   const index = e.currentTarget.dataset.index;
+  //   const navIndex = that.data.curIndex;
+  //   let goods = that.data.goods;
+  //   let cartObjects = that.data.cartObjects;
+  //   //第二步： 当前商品的数量加1
+  //   cartObjects[index].quantity++;
+  //   goods[navIndex].nodes[index].preOrder++;
+  //   //第三步： 购物车的总价钱count和总数量sum加上对应的
+  //   let count = this.data.count;
+  //   count++;
+  //   const sum_string = this.data.sum;
+  //   const price = Number(cartObjects[index].price);
+  //   let sum = Number(sum_string) + price;
+  //   sum = sum.toFixed(2);
+  //   //第四步： 更新数据
+  //   this.setData({
+  //     goods: goods,
+  //     cartObjects: cartObjects,
+  //     count: count,
+  //     sum: sum
+  //   }) 
+  // },
 
-  //购物车里的商品：点击“-”
-  reduceQuantity: function (e) {
-    //第一步： 获取在购物车中的当前商品
-    const that = this;
-    const index = e.currentTarget.dataset.index
-    const navIndex = that.data.curIndex;
-    let goods = that.data.goods;
-    let cartObjects = that.data.cartObjects;
-    //第二步： 购物车的总价钱count和总数量sum加上对应的
-    goods[navIndex].nodes[index].preOrder--;
-    let count = this.data.count;
-    count--;
-    const sum_string = this.data.sum;
-    const price = Number(cartObjects[index].price);
-    let sum = Number(sum_string) - price;
-    sum = sum.toFixed(2);
-    //第三步： 判断当前商品的数量是否为1
-    //如果是，
-    if (cartObjects[index].quantity === 1){
-      //1.把当前商品对象从购物车中移出
-      cartObjects.pop(cartObjects[index]);
-      //2.修改滚动的高度
-      let scrollHeight;
-      if (cartObjects.length >= 3) {
-        scrollHeight = 450;
-      } else {
-        scrollHeight = cartObjects.length * 150;
-      }
-      //3.更新数据
-      this.setData({
-        scrollHeight: scrollHeight
-      })
-    }
-    //如果不是，
-    else{
-      //1.当前商品的数量减1
-      cartObjects[index].quantity--;
-    }
-    //第四步： 判断购物车是否空了
-    //如果是空了，
-    if(!cartObjects.length ){
-      this.setData({
-        showCartModalStatus: false,
-      })
-    }
-    //第五步： 更新数据
-    this.setData({
-      goods: goods,
-      count: count,
-      sum: sum,
-      cartObjects: cartObjects
-    })
-  },
+  // //购物车里的商品：点击“-”
+  // reduceQuantity: function (e) {
+  //   //第一步： 获取在购物车中的当前商品
+  //   const that = this;
+  //   const index = e.currentTarget.dataset.index
+  //   const navIndex = that.data.curIndex;
+  //   let goods = that.data.goods;
+  //   let cartObjects = that.data.cartObjects;
+  //   //第二步： 购物车的总价钱count和总数量sum加上对应的
+  //   goods[navIndex].nodes[index].preOrder--;
+  //   let count = this.data.count;
+  //   count--;
+  //   const sum_string = this.data.sum;
+  //   const price = Number(cartObjects[index].price);
+  //   let sum = Number(sum_string) - price;
+  //   sum = sum.toFixed(2);
+  //   //第三步： 判断当前商品的数量是否为1
+  //   //如果是，
+  //   if (cartObjects[index].quantity === 1){
+  //     //1.把当前商品对象从购物车中移出
+  //     cartObjects.pop(cartObjects[index]);
+  //     //2.修改滚动的高度
+  //     let scrollHeight;
+  //     if (cartObjects.length >= 3) {
+  //       scrollHeight = 450;
+  //     } else {
+  //       scrollHeight = cartObjects.length * 150;
+  //     }
+  //     //3.更新数据
+  //     this.setData({
+  //       scrollHeight: scrollHeight
+  //     })
+  //   }
+  //   //如果不是，
+  //   else{
+  //     //1.当前商品的数量减1
+  //     cartObjects[index].quantity--;
+  //   }
+  //   //第四步： 判断购物车是否空了
+  //   //如果是空了，
+  //   if(!cartObjects.length ){
+  //     this.setData({
+  //       showCartModalStatus: false,
+  //     })
+  //   }
+  //   //第五步： 更新数据
+  //   this.setData({
+  //     goods: goods,
+  //     count: count,
+  //     sum: sum,
+  //     cartObjects: cartObjects
+  //   })
+  // },
 
   //清空购物车
   deleteAll: function(){
