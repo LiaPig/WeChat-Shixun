@@ -20,6 +20,8 @@ Page({
     curProduct: null,
     //弹窗要用到的当前商品的属性标签
     curProductTags: [],
+    //弹窗要用到的价钱
+    modal_price: null,
     //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框 
     //hiddenmodalput: true,
     hiddenSelectModal: true,
@@ -112,6 +114,7 @@ Page({
     const navIndex = that.data.curIndex;
     const products = that.data.products;
     let product = products[navIndex].nodes[index];
+    let modal_price = null;
     //第二步： 获取标签的默认值
     const productTags = product.productTags;
     let curProductTags = [];
@@ -134,17 +137,26 @@ Page({
           select.value = selects[0].value;
           selects[0].checked = true;
           //全部设置好了之后加入到curProductTags中,组装好了默认的标签
-          curProductTags.push(select);  
+          curProductTags.push(select);          
         }
       }
       //过滤掉只留下标签为商品属性标签,给这些标签的第一个值加上默认样式
       product.productTags = productTags.filter(o => o.type !== "productCategory");  
+
+      //设置窗口价钱的初始值
+      let addPrice = 0;
+      for(let item of curProductTags){
+        addPrice += Number(item.value);
+      }
+      modal_price = Number(product.basePrice) + addPrice;
+      modal_price = modal_price.toFixed(2);
     }
     //第三步： 存放好index、product与curProductTags以方便给弹窗使用，
     //第四步： 开启显示弹窗  
     that.setData({
       curIndex: navIndex,
       curProductIndex: index,
+      modal_price: modal_price,
       curProduct: product,
       curProductTags: curProductTags,
       hiddenSelectModal: false
@@ -212,6 +224,7 @@ Page({
     let curProduct = that.data.curProduct;
     let productTag = e.currentTarget.dataset; 
     let curProductTags = that.data.curProductTags; 
+    let modal_price = null;
     //第二步: 设置当前curProductTags对象中checked值本来为true的改为false,当前的为true的改为false
     let tag = curProduct.productTags.find(o => o.id === productTag.id);
     for (let i = 0; i < tag.tagOptions.length; i++){
@@ -234,10 +247,19 @@ Page({
         curProductTags[i].value = productTag.value;
       }
     }   
-   curProduct.quantity = 1;
-    //第三步： 存储数据
+    //第四步： 设置窗口价钱的值
+    let addPrice = 0;
+    for (let item of curProductTags) {
+      addPrice += Number(item.value);
+    }
+    modal_price = Number(curProduct.basePrice) + addPrice;
+    modal_price = modal_price.toFixed(2);
+    //第五步： 修改当前商品的数量为1
+    curProduct.quantity = 1;
+    //第六步： 存储数据
     this.setData({
       curProduct: curProduct,
+      modal_price: modal_price,
       curProductTags: curProductTags
     })
   },
@@ -261,6 +283,7 @@ Page({
     const navIndex = that.data.curIndex;
     let products = that.data.products;
     let product = products[navIndex].nodes[index];
+    const modal_price = that.data.modal_price;
     //第二步： 获取封装的当前商品对象curProduct
     let curProduct = that.data.curProduct;
     //第三步： 将选取的标签（规则）对象size存进curProduct对象里
@@ -271,7 +294,7 @@ Page({
     let count = that.data.count;
     count ++;
     const sum_string = that.data.sum;
-    const price = Number(product.basePrice);  
+    const price = Number(modal_price);  
     let sum = Number(sum_string) + price;
     sum = sum.toFixed(2);
     //第六步： 将当前商品加入到购物车中
@@ -308,6 +331,7 @@ Page({
         //循环了所有购物车的对象都没有找到相同标签（规格）的，才加入到购物车！
         if (flag === 0) {    
           curProduct.quantity = 1;
+          curProduct.price = price;
           cartObjects.push(curProduct);
         }
       }
@@ -323,6 +347,7 @@ Page({
         //3.如果没
         else{
           curProduct.quantity++;
+          curProduct.price = price;
           cartObjects.push(curProduct);
         }     
       }
@@ -330,6 +355,7 @@ Page({
     //1.购物车为空， 直接添加
     else {
       curProduct.quantity = 1;
+      curProduct.price = price;
       cartObjects.push(curProduct);
     }
    
@@ -379,6 +405,7 @@ Page({
     const navIndex = that.data.curIndex;
     let products = that.data.products;
     let cartObjects = that.data.cartObjects;
+    const modal_price = that.data.modal_price;
     //第二步： 当前商品的数量加1
     cartObjects[index].quantity++;
     products[navIndex].nodes[index].quantity++;
@@ -386,7 +413,8 @@ Page({
     let count = this.data.count;
     count++;
     const sum_string = this.data.sum;
-    const price = Number(cartObjects[index].basePrice);
+    console.log(cartObjects[index])
+    const price = Number(cartObjects[index].price);
     let sum = Number(sum_string) + price;
     sum = sum.toFixed(2);
     //第四步： 更新数据

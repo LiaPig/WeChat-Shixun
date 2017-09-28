@@ -84,7 +84,7 @@
                 </view>
                 <!-- 底部 -->
                 <view class='footer'>
-                  <view class='price'>￥ 99.99</view>
+                  <view class='price'>￥ {{modal_price}}</view>
                   <view class='button' bindtap='confirm'>加入购物车</view>
                 </view>
               </view>      
@@ -174,7 +174,7 @@
                   wx:for-item="productTags" 
                   wx:key="">{{productTags.optionName}}、</text>
           </view>
-          <view class="body_item_fee">￥{{product.basePrice * product.quantity}}</view>
+          <view class="body_item_fee">￥{{product.price * product.quantity}}</view>
           <view class='button_group'>
             <!-- 减少按钮 -->
             <text class="fa fa-minus-square fa-lg"
