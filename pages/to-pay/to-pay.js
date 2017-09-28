@@ -33,6 +33,7 @@ Page({
       cartObjects: cartObjects,
       order: order,
     })
+    console.log(cartObjects)
   },
 
   bindTextBlur: function(e){

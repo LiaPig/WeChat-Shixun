@@ -10,9 +10,9 @@
     <scroll-view class='content' scroll-y style="height: 480rpx;">
       <block class='product' wx:for='{{order.products}}' wx:key=''>
         <view class='title_size'>
-          <view class='title'>{{item.title}}</view>
-           <block wx:for='{{item.size}}' wx:for-item='size' wx:key=''>
-            <text class='size'>{{size.name}}、</text>
+          <view class='title'>{{item.name}}</view>
+           <block wx:for='{{item.productTags}}' wx:for-item='productTags' wx:key=''>
+            <text class='size'>{{productTags.optionName}}、</text>
           </block> 
         </view>
          <view class='quantity'>× {{item.quantity}}</view>
