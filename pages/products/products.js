@@ -206,7 +206,6 @@ Page({
     }
   },
 
-
   // 点击select切换
   swiperChange: function (e) {
     //第一步： 获取当前商品对象curProduct,当前更改了值的标签（规格）对象productTags，包含当前商品的所有标签信息的对象curProductTags
@@ -374,31 +373,31 @@ Page({
   },
 
   //购物车里的商品：点击“+”
-  // addQuantity: function(e){
-  //   //第一步： 获取在购物车中的当前商品
-  //   const that = this;
-  //   const index = e.currentTarget.dataset.index;
-  //   const navIndex = that.data.curIndex;
-  //   let goods = that.data.goods;
-  //   let cartObjects = that.data.cartObjects;
-  //   //第二步： 当前商品的数量加1
-  //   cartObjects[index].quantity++;
-  //   goods[navIndex].nodes[index].preOrder++;
-  //   //第三步： 购物车的总价钱count和总数量sum加上对应的
-  //   let count = this.data.count;
-  //   count++;
-  //   const sum_string = this.data.sum;
-  //   const price = Number(cartObjects[index].price);
-  //   let sum = Number(sum_string) + price;
-  //   sum = sum.toFixed(2);
-  //   //第四步： 更新数据
-  //   this.setData({
-  //     goods: goods,
-  //     cartObjects: cartObjects,
-  //     count: count,
-  //     sum: sum
-  //   }) 
-  // },
+  addQuantity: function(e){
+    //第一步： 获取在购物车中的当前商品
+    const that = this;
+    const index = e.currentTarget.dataset.index;
+    const navIndex = that.data.curIndex;
+    let products = that.data.products;
+    let cartObjects = that.data.cartObjects;
+    //第二步： 当前商品的数量加1
+    cartObjects[index].quantity++;
+    products[navIndex].nodes[index].quantity++;
+    //第三步： 购物车的总价钱count和总数量sum加上对应的
+    let count = this.data.count;
+    count++;
+    const sum_string = this.data.sum;
+    const price = Number(cartObjects[index].basePrice);
+    let sum = Number(sum_string) + price;
+    sum = sum.toFixed(2);
+    //第四步： 更新数据
+    this.setData({
+      products: products,
+      cartObjects: cartObjects,
+      count: count,
+      sum: sum
+    }) 
+  },
 
   // //购物车里的商品：点击“-”
   // reduceQuantity: function (e) {
