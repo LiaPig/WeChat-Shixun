@@ -163,7 +163,6 @@ Page({
     let cartObjects = that.data.cartObjects;
     //第二步： 判断商品是否有标签
     //如果没有,直接数量减去1
-    console.log(productTags.length)
     if (productTags.length === 0) {
       //1.商品good的数量减去1
       product.quantity--;
@@ -400,58 +399,58 @@ Page({
   },
 
   // //购物车里的商品：点击“-”
-  // reduceQuantity: function (e) {
-  //   //第一步： 获取在购物车中的当前商品
-  //   const that = this;
-  //   const index = e.currentTarget.dataset.index
-  //   const navIndex = that.data.curIndex;
-  //   let goods = that.data.goods;
-  //   let cartObjects = that.data.cartObjects;
-  //   //第二步： 购物车的总价钱count和总数量sum加上对应的
-  //   goods[navIndex].nodes[index].preOrder--;
-  //   let count = this.data.count;
-  //   count--;
-  //   const sum_string = this.data.sum;
-  //   const price = Number(cartObjects[index].price);
-  //   let sum = Number(sum_string) - price;
-  //   sum = sum.toFixed(2);
-  //   //第三步： 判断当前商品的数量是否为1
-  //   //如果是，
-  //   if (cartObjects[index].quantity === 1){
-  //     //1.把当前商品对象从购物车中移出
-  //     cartObjects.pop(cartObjects[index]);
-  //     //2.修改滚动的高度
-  //     let scrollHeight;
-  //     if (cartObjects.length >= 3) {
-  //       scrollHeight = 450;
-  //     } else {
-  //       scrollHeight = cartObjects.length * 150;
-  //     }
-  //     //3.更新数据
-  //     this.setData({
-  //       scrollHeight: scrollHeight
-  //     })
-  //   }
-  //   //如果不是，
-  //   else{
-  //     //1.当前商品的数量减1
-  //     cartObjects[index].quantity--;
-  //   }
-  //   //第四步： 判断购物车是否空了
-  //   //如果是空了，
-  //   if(!cartObjects.length ){
-  //     this.setData({
-  //       showCartModalStatus: false,
-  //     })
-  //   }
-  //   //第五步： 更新数据
-  //   this.setData({
-  //     goods: goods,
-  //     count: count,
-  //     sum: sum,
-  //     cartObjects: cartObjects
-  //   })
-  // },
+  reduceQuantity: function (e) {
+    //第一步： 获取在购物车中的当前商品
+    const that = this;
+    const index = e.currentTarget.dataset.index
+    const navIndex = that.data.curIndex;
+    let products = that.data.products;
+    let cartObjects = that.data.cartObjects;
+    //第二步： 购物车的总价钱count和总数量sum加上对应的
+    products[navIndex].nodes[index].quantity--;
+    let count = this.data.count;
+    count--;
+    const sum_string = this.data.sum;
+    const price = Number(cartObjects[index].basePrice);
+    let sum = Number(sum_string) - price;
+    sum = sum.toFixed(2);
+    //第三步： 判断当前商品的数量是否为1
+    //如果是，
+    if (cartObjects[index].quantity === 1){
+      //1.把当前商品对象从购物车中移出
+      cartObjects.pop(cartObjects[index]);
+      //2.修改滚动的高度
+      let scrollHeight;
+      if (cartObjects.length >= 3) {
+        scrollHeight = 450;
+      } else {
+        scrollHeight = cartObjects.length * 150;
+      }
+      //3.更新数据
+      this.setData({
+        scrollHeight: scrollHeight
+      })
+    }
+    //如果不是，
+    else{
+      //1.当前商品的数量减1
+      cartObjects[index].quantity--;
+    }
+    //第四步： 判断购物车是否空了
+    //如果是空了，
+    if(!cartObjects.length ){
+      this.setData({
+        showCartModalStatus: false,
+      })
+    }
+    //第五步： 更新数据
+    this.setData({
+      products: products,
+      count: count,
+      sum: sum,
+      cartObjects: cartObjects
+    })
+  },
 
   //清空购物车
   deleteAll: function(){
