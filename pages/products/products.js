@@ -153,38 +153,34 @@ Page({
 
   //点击“-”减号按钮
   reduce: function (e) {
-
-    //把options 改成 productTags
-    //把size 改成 curProductTags
-
-
-    //第一步： 获取到当前商品对象good,以及商品的标签
+    //第一步： 获取到当前商品对象product,以及商品的标签
     const that = this;
     const index = e.currentTarget.dataset.index;
     const navIndex = that.data.curIndex;
-    const goods = that.data.goods;
-    let good = goods[navIndex].nodes[index];
-    const options = good.options;
-    let cartObjects = this.data.cartObjects;
+    const products = that.data.products;
+    let product = products[navIndex].nodes[index];
+    const productTags = product.productTags;
+    let cartObjects = that.data.cartObjects;
     //第二步： 判断商品是否有标签
     //如果没有,直接数量减去1
-    if (!options) {
+    console.log(productTags.length)
+    if (productTags.length === 0) {
       //1.商品good的数量减去1
-      good.preOrder -= 1;
+      product.quantity--;
       //2.购物车的商品总量count减1，
       //3.购物车的总价sum减去对应的price
       let count = that.data.count;
       count--;
       const sum_string = that.data.sum;
-      const price = Number(good.price);
+      const price = Number(product.basePrice);
       let sum = Number(sum_string) - price;
       sum = sum.toFixed(2);
       //4.判断这个对象的数量是否为1
-      let curGood = cartObjects.find(o => o.id === good.id); 
-      let curIndex = cartObjects.findIndex(o => o.id === good.id);
+      let curProduct = cartObjects.find(o => o.id === product.id); 
+      let curIndex = cartObjects.findIndex(o => o.id === product.id);
       //4.如果等于1，把这个对象从购物车中移除
-      if (curGood.quantity === 1){
-        cartObjects.pop(curGood);
+      if (curProduct.quantity === 1){
+        cartObjects.pop(curProduct);
       }
       //4.如果不等于1，数量减1
       else {
@@ -192,10 +188,10 @@ Page({
       }
       //5.把good赋值给回goods,数据更新
       
-      goods[navIndex].nodes[index] = good;
+      products[navIndex].nodes[index] = product;
       this.setData({
         cartObjects: cartObjects,
-        goods: goods,
+        products: products,
         count: count,
         sum: sum
       })
