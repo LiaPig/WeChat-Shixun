@@ -1,5 +1,6 @@
 //index.js
-const datou = getApp().globalData.datou;
+const app = getApp();
+const API = getApp().globalData.API;
 //获取应用实例
 Page({
 
@@ -24,21 +25,38 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    //第二步，获取轮播图
-    wx.request({
-      url: datou + "/api/images?type=swiper&sort=sort,desc",
-      success: function (res) {
-        const pics = res.data.data.content;
-        const imgUrls = [];
-        for (let i = 0; i < pics.length; i++) {
-          imgUrls.push(pics[i].url)
-        }
-        that.setData({
-          imgUrls: imgUrls
+    wx.login({
+      success: res =>  {
+        wx.request({
+          url: app.globalData.API + '/api/wechat/login?code=' + res.code,
+          success: res => {
+            // 如果已经注册登录
+            if (res.data.success) {
+              app.globalData.token = res.data.data.access_token;
+              //第二步，获取轮播图
+              wx.request({
+                url: API + "/api/images?type=swiper&sort=sort,desc",
+                header: {
+                  'Authorization': 'Bearer' + app.globalData.token
+                },
+                success: function (res) {
+                  const pics = res.data.data.content;
+                  const imgUrls = [];
+                  for (let i = 0; i < pics.length; i++) {
+                    imgUrls.push(pics[i].url)
+                  }
+                  that.setData({
+                    imgUrls: imgUrls
+                  })
+                  wx.hideLoading()
+                }
+              })
+            }
+          }
         })
-        wx.hideLoading()
       }
-    })
+    })   
+    
   },
 
   //跳转到商品页面

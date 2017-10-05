@@ -1,6 +1,9 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/register/register",
+    
     "pages/orders/orders",
     "pages/tickets/tickets",
     "pages/products/products",
@@ -8,6 +11,7 @@
     "pages/order-detail/order-detail",
     "pages/test/test",
     "pages/user/user"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,45 @@
+<!--pages/register/register.wxml-->
+<view class='container'>
+  <!-- 表单开始 -->
+  <view class='form'>
+    <!-- 1.顶部标题开始 -->
+    <view class='title'>
+      会员注册
+    </view>
+    <!-- 1.顶部标题结束 -->
+
+    <!-- 2.手机号码区域开始 -->
+    <view class="phone">
+      <input placeholder="请输入手机号"
+             class='phone_input'
+             value='{{  form.phone }}'
+             bindblur='getPhone'/>
+    </view>
+    <!-- 2.手机号码区域结束 -->
+
+    <!-- 3.验证码区域开始 -->
+    <view class='checkCode'>
+      <input placeholder='输入所获验证码' 
+             class='checkCode_input'
+             value='{{  form.checkCode }}'
+             bindblur='getCheckCode'></input>
+
+      <button class="checkCode_button" 
+              bindtap="sendCheckCode">
+          {{ buttonText }}</button>
+    </view>
+    <!-- 3.验证码区域结束 -->
+
+    <!-- 4.立即验证按钮区域开始 -->
+    <view class='buttonArea'>
+      <button bindtap='register' class='form_button'>立即验证</button>
+    </view>
+    <!-- 4.立即验证按钮区域结束 -->
+  </view>
+  <!-- 表单结束 --> 
+  <!-- 底部图片开始 -->
+  <view>
+    <image src='{{ backgroundImage }}' class='img'></image>
+  </view>
+  <!-- 底部图片结束 -->
+</view>

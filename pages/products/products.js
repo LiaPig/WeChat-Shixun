@@ -1,4 +1,6 @@
-const datou = getApp().globalData.datou;
+//product.js
+const app = getApp();
+const API = getApp().globalData.API;
 
 Page({
 
@@ -35,17 +37,15 @@ Page({
     scrollHeight: 150,
     //购物车里的内容
     cartObjects: []
-    
-    
   },
 
   onLoad: function () {
     const that = this;
     //第一步：获取商品分类
     wx.request({
-      url: datou + "/api/tags?type=productCategory",
+      url: API + "/api/tags?type=productCategory",
       header: {
-        'content-type': 'application/json'
+        'Authorization': 'Bearer' + app.globalData.token
       },
       success: function (res) {
         //自己组装一个e对象来复用switchRightTab函数,使得商品能加载出来
@@ -89,7 +89,7 @@ Page({
     for (let i = 0; i < products.length; i++) {
       products[i].nodes = [];
       wx.request({
-        url: datou + "/api/products/tag/" + products[i].id,
+        url: API + "/api/products/tag/" + products[i].id,
         header: {
           'content-type': 'application/json'
         },
@@ -369,7 +369,7 @@ Page({
       sum: sum,
       hiddenSelectModal: true
     });
-    console.log(cartObjects)
+    // console.log(cartObjects)
   },
 
   //点击了遮蔽层，隐藏Modal
@@ -413,7 +413,6 @@ Page({
     let count = this.data.count;
     count++;
     const sum_string = this.data.sum;
-    console.log(cartObjects[index])
     const price = Number(cartObjects[index].price);
     let sum = Number(sum_string) + price;
     sum = sum.toFixed(2);

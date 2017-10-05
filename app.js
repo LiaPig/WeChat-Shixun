@@ -9,7 +9,33 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 发送 res.code 到后台判断用户是否已经登录
+      
+        wx.request({
+          url: this.globalData.API + '/api/wechat/login?code=' + res.code,
+          success: res => {
+            // 如果已经注册登录
+            if (res.data.success) {
+              this.globalData.token = res.data.data.access_token;
+            }
+            // 如果没有注册
+            else {         
+              wx.showModal({
+                title: '提示',
+                content: '请先注册哦',
+                showCancel: false,
+                succes: res => {
+                  if(res.confirm) {
+                    wx.redirectTo({
+                      url: '../register/register',
+                    })
+                  }
+                }
+              })
+            }
+          }
+        })
+        //换取 openId, sessionKey, unionId
       }
     })
     // 获取用户信息
@@ -38,6 +64,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    datou: "https://api.leewaiho.com"
+    token: null,
+    API: "https://api.leewaiho.com"
+    
   }
 })

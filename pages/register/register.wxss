@@ -1,0 +1,93 @@
+/* pages/register/register.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  display: inline-block;
+  height: 800rpx;
+  width: 100%;
+}
+
+.form .title {
+  display: inline-block;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 50rpx;
+  text-align: center;
+  color: red;
+}
+
+.form .phone {
+  display: inline-block;
+  margin-top: 100rpx;
+  height: 100rpx;
+  width: 100%;
+}
+
+.form .phone .phone_input {
+  height: 80rpx;
+  width: 96%;
+  margin-top: 10rpx;
+  margin-left: 2%;
+  border: 1rpx solid green; 
+}
+
+.form .checkCode {
+  display: inline-block;
+  margin-top: 10rpx;
+  height: 100rpx;
+  width: 100%;
+}
+
+.form .checkCode .checkCode_input {
+  float: left;
+  height: 80rpx;
+  width: 60%;
+  margin-top: 10rpx;
+  margin-left: 2%;
+  border: 1rpx solid green; 
+}
+
+.form .checkCode .checkCode_button {
+  float: left;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 35%;
+  margin-top: 10rpx;
+  margin-left: 1%;
+  margin-right: 1%;
+  color: #fff;
+  background-color: green;
+}
+
+.form .buttonArea {
+  display: inline-block;
+  margin-top: 10rpx;
+  height: 100rpx;
+  width: 100%;
+}
+
+.form .buttonArea .form_button {
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 96%;
+  margin-top: 10rpx;
+  margin-left: 2%;
+  margin-right: 2%;
+  color: #fff;
+  background-color: green;
+}
+
+.button_pink {
+  background-color: pink;
+}
+
+.img {
+  display: inline-block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
