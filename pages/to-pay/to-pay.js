@@ -120,6 +120,7 @@ Page({
           method: 'POST',
           data: order,
           success: function (res) {
+            const orderId = res.data.data.id;
             if (res.data.success) {
               wx.hideLoading();
               wx.showModal({
@@ -128,9 +129,9 @@ Page({
                 showCancel: false,
                 success: function (res) {
                   if (res.confirm) {
-                    // wx.redirectTo({
-                    //   url: '../index/index',
-                    // })
+                    wx.redirectTo({
+                      url: '../pay/pay?orderId=' + orderId
+                    })
                   }
                 }
               })

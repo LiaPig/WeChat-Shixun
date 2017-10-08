@@ -1,0 +1,5 @@
+<!--pages/pay/pay.wxml-->
+<view>
+  <button bindtap='payOrder' class='pay'>点击支付</button>
+  <button bindtap='cancelOrder' class='cancel'>点击取消订单</button>
+</view>

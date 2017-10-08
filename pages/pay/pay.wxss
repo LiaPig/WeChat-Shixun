@@ -1,0 +1,13 @@
+/* pages/pay/pay.wxss */
+.pay {
+  display: inline-block;
+  background-color: green;
+  color: #fff;
+  width: 100%;
+}
+.cancel {
+  display: inline-block;
+  background-color: orangered;
+  color: #fff;
+  width: 100%;
+}

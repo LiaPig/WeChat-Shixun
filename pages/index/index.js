@@ -30,7 +30,6 @@ Page({
         wx.request({
           url: app.globalData.API + '/api/wechat/login?code=' + res.code,
           success: res => {
-            console.log(res)
             // 如果已经注册登录
             if (res.data.success) {
               app.globalData.token = res.data.data.access_token;

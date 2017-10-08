@@ -171,7 +171,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                wx.redirectTo({
+                wx.switchTab({
                   url: '../index/index',
                 })
               }
