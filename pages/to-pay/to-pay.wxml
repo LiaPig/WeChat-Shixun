@@ -8,7 +8,7 @@
   <view class='order'>
     <view class='introduce'>订单详情</view>
     <scroll-view class='content' scroll-y style="height: 480rpx;">
-      <block class='product' wx:for='{{order.products}}' wx:key=''>
+      <block class='product' wx:for='{{orderItem.products}}' wx:key=''>
         <view class='title_size'>
           <view class='title'>{{item.name}}</view>
            <block wx:for='{{item.productTags}}' wx:for-item='productTags' wx:key=''>
@@ -21,7 +21,7 @@
       </block>
     </scroll-view>
     <view class='footer'>
-      <view class='count'>￥ {{order.count}}</view>
+      <view class='count'>￥ {{orderItem.price}}</view>
       <text>总计</text>
     </view>
   </view>
@@ -29,13 +29,13 @@
   <view class='description'>
     <text>备注（20字以内）</text>
     <input placeholder="如有口味要求、请输入备注" 
-              placeholder-style="color:red;"
-              maxlength="20"
-              bindblur="bindTextBlur" 
-              value="{{description}}"  />
+           placeholder-style="color:red;"
+           maxlength="20"
+           bindblur="getDescription" 
+           value="{{description}}"  />
   </view>
 
   <view class='button'>
-    <button type='warn'>确认订单</button>
+    <button bindtap='confirmOrder' type='warn'>确认订单</button>
   </view>
 </view>

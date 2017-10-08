@@ -105,45 +105,11 @@ Page({
       // 再次发送获得code
       wx.login({
         success: res => {
-          that.data.code = res.code;
-        }
-      })
-      // 用来传给后台的数据
-      let form_data = {
-        mobilePhone: that.data.form.phone,
-        username: that.data.userInfo.nickName,
-        password: that.data.form.password,
-        gender: that.data.userInfo.gender,
-        avatarUrl: that.data.userInfo.avatarUrl,
-        validCode: that.data.form.checkCode,
-        wxCode: that.data.code
-      }
-      wx.request({
-        url: API + '/api/wechat/register',
-        method: 'POST',
-        data: form_data,
-        success: function (res) {
           console.log(res)
-          if(res.data.success){
-            wx.showModal({
-              title: '成功提示',
-              content: '注册成功！',
-              showCancel: false,
-              success: function (res) {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '../index/index',
-                  })
-                }
-              }
-            })
-          } else {
-            wx.showModal({
-              title: '错误提示',
-              content: res.data.message,
-              showCancel: false
-            })
-          }
+          that.data.code = res.code;
+          setTimeout(function () {
+            that.registerAjax();
+          }, 1000)
         }
       })
     }
@@ -178,5 +144,47 @@ Page({
         }
       })
     }
+  },
+
+  // 与后台交互
+  registerAjax: function(){
+    const that = this;
+    // 用来传给后台的数据
+    let form_data = {
+      mobilePhone: that.data.form.phone,
+      username: that.data.userInfo.nickName,
+      password: that.data.form.password,
+      gender: that.data.userInfo.gender,
+      avatarUrl: that.data.userInfo.avatarUrl,
+      validCode: that.data.form.checkCode,
+      wxCode: that.data.code
+    }
+    wx.request({
+      url: API + '/api/wechat/register',
+      method: 'POST',
+      data: form_data,
+      success: function (res) {
+        if (res.data.success) {
+          wx.showModal({
+            title: '成功提示',
+            content: '注册成功！',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '错误提示',
+            content: res.data.message,
+            showCancel: false
+          })
+        }
+      }
+    })
   }
 })

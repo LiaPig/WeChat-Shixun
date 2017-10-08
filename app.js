@@ -20,17 +20,8 @@ App({
             }
             // 如果没有注册
             else {         
-              wx.showModal({
-                title: '提示',
-                content: '请先注册哦',
-                showCancel: false,
-                succes: res => {
-                  if(res.confirm) {
-                    wx.redirectTo({
-                      url: '../register/register',
-                    })
-                  }
-                }
+              wx.redirectTo({
+                url: '../register/register',
               })
             }
           }
