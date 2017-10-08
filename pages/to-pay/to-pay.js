@@ -132,6 +132,7 @@ Page({
       method: 'POST',
       data: order,
       success: function (res) {
+        console.log(res)
         if(res.data.success) {
           wx.hideLoading();
           wx.showModal({

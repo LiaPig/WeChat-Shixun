@@ -139,9 +139,7 @@ Page({
           select.optionId = selects[0].id;
           selects[0].checked = true;
           //全部设置好了之后加入到curProductTags中,组装好了默认的标签
-          curProductTags.push(select);     
-          console.log("1!curProductTags:")     
-          console.log(curProductTags)    
+          curProductTags.push(select);       
         }
       }
       //过滤掉只留下标签为商品属性标签,给这些标签的第一个值加上默认样式
@@ -227,7 +225,6 @@ Page({
     const that = this;
     let curProduct = that.data.curProduct;
     let productTag = e.currentTarget.dataset; 
-    console.log(productTag)
     let curProductTags = that.data.curProductTags; 
     let modal_price = null;
     //第二步: 设置当前curProductTags对象中checked值本来为true的改为false,当前的为true的改为false
@@ -268,8 +265,6 @@ Page({
       modal_price: modal_price,
       curProductTags: curProductTags
     })
-    console.log("2!curProductTags:")
-    console.log(curProductTags)
   },
 
   //弹窗的： 取消按钮  
@@ -296,8 +291,6 @@ Page({
     let curProduct = that.data.curProduct;
     //第三步： 将选取的标签（规则）对象size存进curProduct对象里
     curProduct.productTags = that.data.curProductTags;
-    console.log("last!curProduct:")
-    console.log(curProduct)
     //第四步： 商品数量增加1
     product.quantity++;
     //第五步： 购物车的总量count加1,购物车的总价sum加上对应的price
@@ -379,7 +372,6 @@ Page({
       sum: sum,
       hiddenSelectModal: true
     });
-    // console.log(cartObjects)
   },
 
   //点击了遮蔽层，隐藏Modal
