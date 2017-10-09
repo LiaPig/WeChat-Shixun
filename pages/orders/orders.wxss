@@ -107,8 +107,10 @@
 .orders .footer .time {
   float: left;
   width: 40%;
+  height: 60rpx;
   line-height: 60rpx;
   font-size: 30rpx;
+  overflow: hidden;
 }
 
 .orders .footer .count {
