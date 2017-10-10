@@ -53,6 +53,7 @@ Page({
       order: order,
       orderItem: orderItem
     })
+    console.log(that.data.cartObjects)
   },
 
   // 获取备注description的值
@@ -88,9 +89,14 @@ Page({
       console.log(cartObjects[0].productTags)
       // tagOptions
       for (let j = 0; j < cartObjects[i].productTags.length; j++) {
-        let tagOption = { id: null };
-        tagOption.id = cartObjects[i].productTags[j].optionId;
+        let tagOption = { 
+          id: null,
+          value:null,
+          optionName:null,
+          type:null };
+        tagOption = cartObjects[i].productTags[j];
         item.tagOptions.push(tagOption);
+        console.log(item.tagOptions)
       }
       // price
       item.price = cartObjects[i].price;

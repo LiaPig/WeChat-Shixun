@@ -30,12 +30,8 @@ Page({
             orders: orders
           })
         }
-        console.log(that.data.orders)
       }
     })
-    
-
-
   },
 
   goToDetail: function(e){

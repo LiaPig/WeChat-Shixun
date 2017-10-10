@@ -8,7 +8,7 @@
 
   <view class="button-group">
     <block wx:for="{{buttonGroup}}" wx:key="buttonGroupId">
-      <button bindtap="default" hover-class="other-button-hover" size="mini"> 
+      <button bindtap="{{item.method}}" hover-class="other-button-hover" size="mini"> 
           <text class="{{item.icon}} fa-lg"></text>
           <text>{{item.title}}</text>
           <text class="fa fa-angle-left fa-lg" style="float: right;line-height: 80rpx;"></text>

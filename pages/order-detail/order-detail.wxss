@@ -113,3 +113,8 @@
   width: 15%;
   text-align: center;
 }
+
+.goToPay {
+  background-color: red;
+  color: #fff;
+}

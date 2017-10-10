@@ -11,9 +11,9 @@
         <view>
           <view wx:if="{{item.state == 1}}" class='status'>已关闭</view>
           <view wx:if="{{item.state == 10}}" class='status'>待支付</view>
-          <view wx:if="{{item.state == 20}}" class='status'>待确认</view>
-          <view wx:if="{{item.state == 30}}" class='status'>正在处理</view>
-          <view wx:if="{{item.state == 40}}" class='status'>已完成</view>
+          <view wx:if="{{item.state == 20}}" class='status' style='color:green'>待确认</view>
+          <view wx:if="{{item.state == 30}}" class='status' style='color:green'>正在处理</view>
+          <view wx:if="{{item.state == 40}}" class='status' style='color:green'>已完成</view>
         </view>
       </view>
       <!-- 头部结束 -->
@@ -26,8 +26,8 @@
               <view class='title'>{{order.product.name}}</view>
               <view class='price'>￥{{order.price}} × {{order.count}}</view>
               <view class='size'>
-                <block wx:for='{{order.product.productTags}}' wx:for-item='productTag'  wx:key=''>
-                  <text>{{productTag.name}}、</text>
+                <block wx:for='{{order.tagOptions}}' wx:for-item='tagOption'  wx:key=''>
+                  <text>{{tagOption.optionName}}、</text>
                 </block>
               </view> 
               <view class='size_count'>￥{{order.price * order.count}}</view>

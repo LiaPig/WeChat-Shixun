@@ -127,7 +127,8 @@ Page({
             name: null,
             optionName: null,
             value: null,
-            optionId: null
+            optionId: null,
+            type: null
           };
           //设置id、name、
           select.id = productTags[i].id;
@@ -137,6 +138,7 @@ Page({
           select.optionName = selects[0].optionName;
           select.value = selects[0].value;
           select.optionId = selects[0].id;
+          select.type = selects[0].type;
           selects[0].checked = true;
           //全部设置好了之后加入到curProductTags中,组装好了默认的标签
           curProductTags.push(select);       
@@ -248,6 +250,7 @@ Page({
         curProductTags[i].optionName = productTag.optionname;
         curProductTags[i].value = productTag.value;
         curProductTags[i].optionId = productTag.optionid;
+        curProductTags[i].type = productTag.type;
       }
     }   
     //第四步： 设置窗口价钱的值

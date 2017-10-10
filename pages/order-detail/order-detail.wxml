@@ -3,36 +3,53 @@
   <!-- 订单详情 -->
   <view class='order'>
     <view class='introduce'>订单详情</view>
+    <!-- 订单号码开始 -->
     <view class='introduce'>
       订单号码：<text> {{order.id}}</text>
     </view>
+    <!-- 订单号码结束 -->
+
+    <!-- 订单时间开始 -->
     <view class='introduce'>
-      订单时间：<text> {{order.time}}</text>
+      订单时间：<text> {{order.create_time}}</text>
     </view>
+    <!-- 订单时间结束 -->
+
+    <!-- 订单状态开始 -->
     <view class='introduce'>
-      订单状态：<text style='color: red;'> {{order.status}}</text>
+      订单状态：
+      <text wx:if='{{order.state == 1}}' style='color: red;'> 已关闭</text>
+      <text wx:if='{{order.state == 10}}' style='color: red;'> 待支付</text>
+      <text wx:if='{{order.state == 20}}' style='color: red;'> 待确认</text>
+      <text wx:if='{{order.state == 30}}' style='color: red;'> 正在处理</text>
+      <text wx:if='{{order.state == 40}}' style='color: red;'> 已完成</text>
     </view>
+    <!-- 订单状态结束 -->
   </view>
+
   <!-- 订单信息 -->
   <view class='info'>
     <view class='introduce'>订单信息</view>
     <scroll-view class='products' scroll-y style="height: 240rpx;">
-      <block class='products' wx:for='{{order.products}}' wx:key=''>
+      <block class='products' wx:for='{{order.orderItems}}' wx:key=''>
         <view class='title_size'>
-          <view class='title'>{{item.title}}</view>
-          <block wx:for='{{item.size}}' wx:for-item='size' wx:key=''>
-            <text class='size'>{{size.name}}、</text>
+          <view class='title'>{{item.product.name}}</view>
+          <block wx:for='{{item.tagOptions}}' wx:for-item='tagOption' wx:key=''>
+            <text class='size'>{{tagOption.optionName}}、</text>
           </block>
         </view>
-        <view class='quantity'>× {{item.quantity}}</view>
+        <view class='quantity'>× {{item.count}}</view>
         <view class='price'>￥ {{item.price}}</view>
       </block>
     </scroll-view>
     <view class='footer'>
-      <view class='count'>￥ {{order.count}}</view>
+      <view class='count'>￥ {{order.price}}</view>
       <text>总计</text>
     </view>
     
   </view>
-  <!-- {{}} -->
+
+  <view wx:if='{{order.state == 10}}'>
+    <button bindtap='goToPay' class='goToPay'>去支付或取消</button>
+  </view>
 </view>

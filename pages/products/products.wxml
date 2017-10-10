@@ -75,6 +75,7 @@
                             data-optionName="{{options.optionName}}"
                             data-value="{{options.value}}"
                             data-optionId="{{options.id}}"
+                            data-type="{{options.type}}"
                             class='select_content {{options.checked?"select_active": ""}}' >
                       {{options.optionName}}</view>
                     </block>       
